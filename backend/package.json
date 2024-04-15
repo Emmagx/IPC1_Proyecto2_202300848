@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend USocial",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon ./index.js"
+  },
+  "author": "3mmagx",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.19.2",
+    "nodemon": "^3.1.0"
+  }
+}

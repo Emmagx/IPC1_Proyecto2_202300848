@@ -1,0 +1,42 @@
+[
+    {
+        "descripcion": "¡Bienvenidos a nuestra nueva red social! Esperamos que encuentren útil y divertida esta plataforma.",
+        "codigoUsuario": "202300848",
+        "categoria": "Anuncio Importante",
+        "imagen": null,
+        "anonimo": false,
+        "fechaHora": "2024-04-15T08:30:00Z"
+    },
+    {
+        "descripcion": "¿Alguien más está emocionado por el evento de astronomía esta noche? ¡Espero ver muchas estrellas!",
+        "codigoUsuario": "202300848",
+        "categoria": "Académico",
+        "imagen": null,
+        "anonimo": true,
+        "fechaHora": "2024-04-15T10:00:00Z"
+    },
+    {
+        "descripcion": "Aquí les dejo un chiste: ¿Qué hace una abeja en el gimnasio? ¡Zum-ba!",
+        "codigoUsuario": "202300848",
+        "categoria": "Funny",
+        "imagen": null,
+        "anonimo": false,
+        "fechaHora": "2024-04-15T12:00:00Z"
+    },
+    {
+        "descripcion": "Increíble recital de piano en el auditorio, ¡no se lo pierdan!",
+        "codigoUsuario": "202300848",
+        "categoria": "Variedad",
+        "imagen": null,
+        "anonimo": true,
+        "fechaHora": "2024-04-15T14:00:00Z"
+    },
+    {
+        "descripcion": "Recordatorio: La entrega de proyectos es el próximo viernes. ¡Asegúrense de revisar sus trabajos!",
+        "codigoUsuario": "202300848",
+        "categoria": "Académico",
+        "imagen": null,
+        "anonimo": false,
+        "fechaHora": "2024-04-15T16:00:00Z"
+    }
+]

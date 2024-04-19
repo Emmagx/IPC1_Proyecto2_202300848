@@ -1,50 +1,59 @@
 {
-    "users": [
-
-      {
-        "carnet": "202300848",
-        "nombres": "Brayan Emanuel",
-        "apellidos": "Garcia",
-        "genero": "Masculino",
-        "facultad": "Ingeniería",
-        "carrera": "Ciencias Y Sistemas",
-        "mail": "2024067090116",
-        "contraseña": "!admin!$..",
-        "isAdmin": true
-      },
-      {
-        "carnet": "202112345",
-        "nombres": "Juan",
-        "apellidos": "Pérez",
-        "genero": "Masculino",
-        "facultad": "Ingeniería",
-        "carrera": "Ingeniería en Sistemas",
-        "mail": "juan.perez@example.com",
-        "contraseña": "password123",
-        "isAdmin": false
-      },
-      {
-        "carnet": "202155555",
-        "nombres": "María",
-        "apellidos": "González",
-        "genero": "Femenino",
-        "facultad": "Ciencias Económicas",
-        "carrera": "Economía",
-        "mail": "maria.gonzalez@example.com",
-        "contraseña": "securepass",
-        "isAdmin": false
-      },
-      {
-        "carnet": "202199999",
-        "nombres": "Carlos",
-        "apellidos": "Rodríguez",
-        "genero": "Masculino",
-        "facultad": "Ciencias Jurídicas y Sociales",
-        "carrera": "Derecho",
-        "mail": "carlos.rodriguez@example.com",
-        "contraseña": "12345678",
-        "isAdmin": false
-      }
-    ]
-  }
-  
+  "users": [
+    {
+      "carnet": "202300848",
+      "nombres": "Laura",
+      "apellidos": "Mejia",
+      "genero": "Femenino",
+      "facultad": "arquitectura",
+      "carrera": "Diseño Gráfico",
+      "mail": "laura.martinez@example.com",
+      "contraseña": "supersecure",
+      "isAdmin": true
+    },
+    {
+      "carnet": "202155555",
+      "nombres": "María",
+      "apellidos": "González",
+      "genero": "Femenino",
+      "facultad": "Ciencias Económicas",
+      "carrera": "Economía",
+      "mail": "maria.gonzalez@example.com",
+      "contraseña": "securepass",
+      "isAdmin": false
+    },
+    {
+      "carnet": "202199999",
+      "nombres": "Carlos",
+      "apellidos": "Rodríguez",
+      "genero": "Masculino",
+      "facultad": "Ciencias Jurídicas y Sociales",
+      "carrera": "Derecho",
+      "mail": "carlos.rodriguez@example.com",
+      "contraseña": "12345678",
+      "isAdmin": false
+    },
+    {
+      "carnet": "202300814",
+      "nombres": "Laura",
+      "apellidos": "Martinez",
+      "genero": "Femenino",
+      "facultad": "Arquitectura",
+      "carrera": "Diseño Gráfico",
+      "mail": "laura.martinez@example.com",
+      "contraseña": "supersecure",
+      "isAdmin": false
+    },
+    {
+      "carnet": "202300888",
+      "nombres": "Laura",
+      "apellidos": "Mejia",
+      "genero": "Femenino",
+      "facultad": "Arquitectura",
+      "carrera": "Diseño Gráfico",
+      "mail": "laura.martinez@example.com",
+      "contraseña": "supersecure",
+      "isAdmin": false
+    }
+  ]
+}

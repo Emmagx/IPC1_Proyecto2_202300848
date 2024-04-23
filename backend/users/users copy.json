@@ -43,6 +43,17 @@
       "mail": "laura.martinez@example.com",
       "contraseña": "supersecure",
       "isAdmin": false
+    },
+    {
+      "username": "12",
+      "nombres": "Prueba",
+      "apellidos": "Martinez",
+      "genero": "Femenino",
+      "facultad": "Arquitectura",
+      "carrera": "Diseño Gráfico",
+      "mail": "laura.martinez@example.com",
+      "contraseña": "supersecure",
+      "isAdmin": false
     }
   ]
 }

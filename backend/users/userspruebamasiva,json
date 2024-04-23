@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "username": "202300848",
+      "username": "12",
       "nombres": "Brayan",
       "apellidos": "Garcia",
       "genero": "Masculino",
@@ -12,7 +12,7 @@
       "isAdmin": true
     },
     {
-      "username": "202155555",
+      "username": "213",
       "nombres": "María",
       "apellidos": "González",
       "genero": "Femenino",
@@ -23,7 +23,7 @@
       "isAdmin": false
     },
     {
-      "username": "202199999",
+      "username": "123",
       "nombres": "Carlos",
       "apellidos": "Rodríguez",
       "genero": "Masculino",
@@ -34,8 +34,19 @@
       "isAdmin": false
     },
     {
-      "username": "202300814",
+      "username": "20265745300814",
       "nombres": "Laura",
+      "apellidos": "Martinez",
+      "genero": "Femenino",
+      "facultad": "Arquitectura",
+      "carrera": "Diseño Gráfico",
+      "mail": "laura.martinez@example.com",
+      "contraseña": "supersecure",
+      "isAdmin": false
+    },
+    {
+      "username": "456",
+      "nombres": "Prueba",
       "apellidos": "Martinez",
       "genero": "Femenino",
       "facultad": "Arquitectura",

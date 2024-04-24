@@ -1,28 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './adminDashboard.css';
 
 function AdminDashboard() {
-  const [users, setUsers] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [loadData, setLoadData] = useState({ users: [], posts: [] });
-
-  useEffect(() => {
-    // Carga inicial de usuarios
-    fetchUsers();
-  }, []);
-
-  const fetchUsers = async () => {
-    try {
-      const response = await fetch('http://localhost:3000/users/');
-      const data = await response.json();
-      setUsers(data);
-    } catch (error) {
-      console.error('Error fetching users:', error);
-    }
-  };
+  const [previewData, setPreviewData] = useState({ users: [], posts: [] });
+  const [tab, setTab] = useState('users');
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
+    const fileReader = new FileReader();
+    fileReader.readAsText(event.target.files[0], "UTF-8");
+    fileReader.onload = e => {
+      try {
+        const content = JSON.parse(e.target.result);
+        if (content[tab] && Array.isArray(content[tab])) {
+          setPreviewData({ ...previewData, [tab]: content[tab] });
+        } else {
+          alert('El archivo JSON no tiene el formato esperado.');
+        }
+      } catch (err) {
+        alert('Error al leer el archivo: ' + err.message);
+      }
+    };
   };
 
   const handleFileUpload = async () => {
@@ -35,67 +34,72 @@ function AdminDashboard() {
     formData.append('file', selectedFile);
 
     try {
-      const response = await fetch('http://localhost:3000/upload', {
+      const endpoint = tab === 'users' ? 'users/mass_upload' : 'posts/mass_upload';
+      const response = await fetch(`http://localhost:3000/${endpoint}`, {
         method: 'POST',
-        body: formData
+        body: formData,
       });
-      const result = await response.json();
-      setLoadData(result);
-      // Clear the selected file
-      setSelectedFile(null);
+
+      if (response.ok) {
+        const result = await response.json();
+        alert('Carga masiva exitosa');
+        setPreviewData({ users: [], posts: [] });
+      } else {
+        const errorResult = await response.json();
+        alert('Error en la carga masiva: ' + errorResult.error);
+      }
     } catch (error) {
       console.error('Error uploading file:', error);
+      alert('Error al subir archivo: ' + error.message);
     }
+
+    setSelectedFile(null);
   };
 
-  const handleDeleteUser = async (userId) => {
-    try {
-      await fetch(`http://localhost:3000/users/${userId}`, {
-        method: 'DELETE'
-      });
-      // Re-fetch users after deletion
-      fetchUsers();
-    } catch (error) {
-      console.error('Error deleting user:', error);
-    }
+  const renderTable = () => {
+    const data = previewData[tab];
+    const headers = tab === 'users'
+      ? ['username', 'Nombres', 'Apellidos', 'Genero', 'Facultad', 'Carrera', 'mail', 'Contraseña', 'isAdmin']
+      : ['ID', 'Descripción', 'CódigoUsuario', 'Categoría', 'FechaHora', 'Anónimo', 'Imagen'];
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            {headers.map(header => (
+              <th key={header}>{header}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item, index) => (
+            <tr key={index}>
+              {headers.map(header => (
+                <td key={`${index}-${header}`}>{item[header.toLowerCase().replace(/\//g, '').replace(/ /g, '')]}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
   };
 
   return (
     <div className="admin-dashboard">
       <h1>Administrador USocial</h1>
-      
-      <div className="users-list">
-        <h2>Usuarios de USocial</h2>
-        <button onClick={() => fetchUsers()}>Actualizar Lista</button>
-        <table>
-          <thead>
-            <tr>
-              <th>Código/Carnet</th>
-              <th>Nombres</th>
-              {/* Add more headers if needed */}
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user) => (
-              <tr key={user.username}>
-                <td>{user.username}</td>
-                <td>{user.nombres}</td>
-                {/* Add more data cells if needed */}
-                <td>
-                  <button onClick={() => handleDeleteUser(user.username)}>Eliminar</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="tabs-container">
+        <div className={`tab ${tab === 'users' ? 'active' : ''}`} onClick={() => setTab('users')}>
+          Usuarios
+        </div>
+        <div className={`tab ${tab === 'posts' ? 'active' : ''}`} onClick={() => setTab('posts')}>
+          Posts
+        </div>
       </div>
-
       <div className="mass-upload">
-        <h2>Carga Masiva</h2>
-        <input type="file" onChange={handleFileChange} />
+        <h2>Carga Masiva {tab === 'users' ? 'de Usuarios' : 'de Posts'}</h2>
+        <input type="file" onChange={handleFileChange} accept=".json" />
         <button onClick={handleFileUpload}>Cargar Archivo</button>
-        {/* Display the loaded data in a table or another format */}
+        {selectedFile && renderTable()}
       </div>
     </div>
   );

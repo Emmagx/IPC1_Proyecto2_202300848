@@ -4,20 +4,21 @@ let postIdCounter = 1;
 
 // Función para crear un nuevo post
 const crearPost = async (postData) => {
+  const newId = postData.id || postIdCounter;
   const newPost = {
-    id: postIdCounter,
-    descripcion: postData.descripcion,
-    codigoUsuario: postData.codigoUsuario,
-    categoria: postData.categoria,
-    fechaHora: postData.fechaHora,
-    anonimo: postData.anonimo,
-    imagen: postData.imagen || null,  // Agrega una imagen si está disponible
+    id: newId,
+    descripción: postData.descripción,
+    códigousuario: postData.códigousuario,
+    categoría: postData.categoría,
+    fechahora: postData.fechahora,
+    anónimo: postData.anónimo,
+    imagen: postData.imagen || null,
   };
   posts.push(newPost);
-  postIdCounter++;  // Incrementa el contador de ID para el próximo post
+  // Asegurarse de que el contador siempre esté adelante de los IDs usados
+  postIdCounter = Math.max(postIdCounter, newId + 1);
   return newPost;
 };
-
 // Función para obtener todos los posts
 const obtenerPosts = async () => {
   return posts;

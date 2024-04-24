@@ -59,8 +59,8 @@ function AdminDashboard() {
   const renderTable = () => {
     const data = previewData[tab];
     const headers = tab === 'users'
-      ? ['username', 'Nombres', 'Apellidos', 'Genero', 'Facultad', 'Carrera', 'mail', 'Contraseña', 'isAdmin']
-      : ['ID', 'Descripción', 'CódigoUsuario', 'Categoría', 'FechaHora', 'Anónimo', 'Imagen'];
+  ? ['username', 'Nombres', 'Apellidos', 'Genero', 'Facultad', 'Carrera', 'mail', 'Contraseña', 'isAdmin']
+  : ['ID', 'Descripción', 'CódigoUsuario', 'Categoría', 'FechaHora', 'Anónimo', 'Imagen', 'Likes'];
 
     return (
       <table>
@@ -105,4 +105,23 @@ function AdminDashboard() {
   );
 }
 
+const handleLike = async (postId) => {
+  try {
+    const response = await fetch(`http://localhost:3000/posts/${postId}/like`, { method: 'POST' });
+    if (response.ok) {
+      const updatedPost = await response.json();
+      // Actualizar el estado con el nuevo conteo de likes
+      setPreviewData({
+        ...previewData,
+        posts: previewData.posts.map(post => post.id === postId ? updatedPost : post)
+      });
+    } else {
+      const errorResult = await response.json();
+      alert('Error al actualizar el me gusta: ' + errorResult.error);
+    }
+  } catch (error) {
+    console.error('Error al actualizar el me gusta:', error);
+    alert('Error al actualizar el me gusta: ' + error.message);
+  }
+};
 export default AdminDashboard;

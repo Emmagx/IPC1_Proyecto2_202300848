@@ -1,0 +1,85 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "descripción": "Post de ejemplo",
+      "códigousuario": "123",
+      "categoría": "General",
+      "fechahora": "2024-04-23T12:00:00Z",
+      "anónimo": false,
+      "imagen": null
+    },
+    {
+      "id": 2,
+      "descripción": "Post de ejemplo",
+      "códigousuario": "123",
+      "categoría": "General",
+      "fechahora": "2024-04-23T12:00:00Z",
+      "anónimo": false,
+      "imagen": null
+    },
+    {
+      "id": 3,
+      "descripción": "Otro Post de ejemplo",
+      "códigousuario": "456",
+      "categoría": "Especial",
+      "fechahora": "2024-04-24T12:00:00Z",
+      "anónimo": true,
+      "imagen": null
+    },
+    {
+      "id": 4,
+      "descripción": "Primer post del sistema",
+      "códigousuario": "001",
+      "categoría": "General",
+      "fechahora": "2024-01-01T12:00:00Z",
+      "anónimo": false,
+      "imagen": null
+    },
+    {
+      "id": 5,
+      "descripción": "Segundo post importante",
+      "códigousuario": "002",
+      "categoría": "Noticias",
+      "fechahora": "2024-01-02T13:00:00Z",
+      "anónimo": true,
+      "imagen": "imagen2.jpg"
+    },
+    {
+      "id": 6,
+      "descripción": "Aviso de eventos",
+      "códigousuario": "003",
+      "categoría": "Eventos",
+      "fechahora": "2024-01-03T14:00:00Z",
+      "anónimo": false,
+      "imagen": null
+    },
+    {
+      "id": 7,
+      "descripción": "Consejos de estudio",
+      "códigousuario": "004",
+      "categoría": "Educación",
+      "fechahora": "2024-01-04T15:00:00Z",
+      "anónimo": true,
+      "imagen": "imagen4.jpg"
+    },
+    {
+      "id": 8,
+      "descripción": "Resumen del día",
+      "códigousuario": "005",
+      "categoría": "Resumen",
+      "fechahora": "2024-01-05T16:00:00Z",
+      "anónimo": false,
+      "imagen": null
+    },
+    {
+      "id": 9,
+      "descripción": "Novedades tecnológicas",
+      "códigousuario": "006",
+      "categoría": "Tecnología",
+      "fechahora": "2024-01-06T17:00:00Z",
+      "anónimo": true,
+      "imagen": "imagen6.jpg"
+    }
+  ]
+}

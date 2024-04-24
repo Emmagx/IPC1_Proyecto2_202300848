@@ -1,48 +1,59 @@
-// posts.js
-let posts = [];
-let postIdCounter = 1;
+import { readFile, writeFile } from 'fs/promises';
 
-// Función para crear un nuevo post
-const crearPost = async (postData) => {
-  const newId = postData.id || postIdCounter;
-  const newPost = {
-    id: newId,
-    descripción: postData.descripción,
-    códigousuario: postData.códigousuario,
-    categoría: postData.categoría,
-    fechahora: postData.fechahora,
-    anónimo: postData.anónimo,
-    imagen: postData.imagen || null,
-  };
-  posts.push(newPost);
-  // Asegurarse de que el contador siempre esté adelante de los IDs usados
-  postIdCounter = Math.max(postIdCounter, newId + 1);
-  return newPost;
-};
-// Función para obtener todos los posts
-const obtenerPosts = async () => {
-  return posts;
-};
+const archivoPosts = 'posts/posts.json';
 
-// Función para actualizar un post existente
-const actualizarPost = async (id, updateData) => {
-  const postIndex = posts.findIndex(post => post.id === id);
-  if (postIndex === -1) {
-    throw new Error('Post no encontrado');
-  }
-  const existingPost = posts[postIndex];
-  const updatedPost = { ...existingPost, ...updateData };
-  posts[postIndex] = updatedPost;
-  return updatedPost;
-};
+async function cargarPosts() {
+    try {
+        const data = await readFile(archivoPosts, 'utf8');
+        return JSON.parse(data).posts;
+    } catch (error) {
+        console.error('Error al cargar posts:', error);
+        return [];
+    }
+}
 
-// Función para eliminar un post
-const eliminarPost = async (id) => {
-  const postIndex = posts.findIndex(post => post.id === id);
-  if (postIndex === -1) {
-    throw new Error('Post no encontrado');
-  }
-  posts.splice(postIndex, 1);
-};
+async function guardarPosts(posts) {
+    try {
+        const data = JSON.stringify({ posts: posts }, null, 2);
+        await writeFile(archivoPosts, data, 'utf8');
+        console.log('Posts guardados exitosamente:', data);
+    } catch (error) {
+        console.error('Error al guardar posts:', error);
+        throw error;
+    }
+}
 
-export { crearPost, obtenerPosts, actualizarPost, eliminarPost };
+export async function crearPost(postData) {
+    const posts = await cargarPosts();
+    const newId = posts.length + 1;  // Simplicidad: asignar ID basado en la longitud + 1
+    postData.id = newId;
+    posts.push(postData);
+    await guardarPosts(posts);
+    return postData;
+}
+
+export async function obtenerPosts() {
+    return cargarPosts();
+}
+
+export async function actualizarPost(id, datosPost) {
+    let posts = await cargarPosts();
+    const index = posts.findIndex(p => p.id === id);
+    if (index !== -1) {
+        posts[index] = { ...posts[index], ...datosPost };
+        await guardarPosts(posts);
+        return posts[index];
+    }
+    throw new Error(`El post con id ${id} no existe.`);
+}
+
+export async function eliminarPost(id) {
+    let posts = await cargarPosts();
+    const postIndex = posts.findIndex(p => p.id === id);
+    if (postIndex === -1) {
+        throw new Error(`El post con id ${id} no existe.`);
+    }
+    posts.splice(postIndex, 1);
+    await guardarPosts(posts);
+    return true; // Indicar éxito
+}

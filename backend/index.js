@@ -111,39 +111,51 @@ app.listen(port, () => {
 });
 
 app.post('/posts/mass_upload', upload.single('file'), async (req, res) => {
+  console.log("Request received for posts/mass_upload");
   if (!req.file) {
+    console.log("No file uploaded");
     return res.status(400).json({ error: 'No file uploaded.' });
   }
+  console.log("File uploaded:", req.file.path);
 
   const filePath = req.file.path;
 
   try {
     const fileContent = fs.readFileSync(filePath, 'utf8');
+    console.log("File content read:", fileContent.substring(0, 100)); // muestra solo los primeros 100 caracteres para evitar desbordamiento
+
     const data = JSON.parse(fileContent);
+    console.log("Parsed data:", data);
 
     if (!data.posts || !Array.isArray(data.posts)) {
+      console.log("Invalid format: posts array not found");
       return res.status(400).json({ error: 'Formato de archivo incorrecto.' });
     }
 
-    // Filtrar posts válidos
     const validPosts = data.posts.filter(post => post.descripción && post.códigousuario && post.categoría && post.fechahora);
+    console.log("Valid posts:", validPosts);
     const results = [];
 
     for (const post of validPosts) {
       try {
         const createdPost = await crearPost(post);
+        console.log("Post created successfully:", createdPost);
         results.push(createdPost);
       } catch (error) {
+        console.log("Error creating post:", error.message);
         results.push({ error: error.message, id: post.id });
       }
     }
 
+    console.log("All posts processed, sending response");
     res.status(200).json({ message: 'Carga de posts exitosa.', results });
   } catch (error) {
-    console.error(error);
+    console.error("Error processing the file:", error);
     res.status(500).json({ error: 'Error al procesar el archivo.' });
   } finally {
-    fs.unlinkSync(filePath); // Asegurarse de eliminar el archivo después del proceso
+    fs.unlinkSync(filePath);
+    
+    console.log("Temporary file deleted");
   }
 });
 

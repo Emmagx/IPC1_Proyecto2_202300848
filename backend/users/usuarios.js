@@ -74,3 +74,7 @@ export async function eliminarUsuario(username) {
   await guardarUsuarios(usuarios);
   return true; // Indicar éxito
 }
+export async function encontrarUsuarioPorUsername(username) {
+  const usuarios = await cargarUsuarios(); // Asegúrate de que esta función devuelve todos los usuarios
+  return usuarios.find(u => u.username === username);
+}

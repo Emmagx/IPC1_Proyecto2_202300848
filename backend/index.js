@@ -31,12 +31,39 @@ app.post('/users/', async (req, res) => {
   }
 });
 
+const fetchUserDetails = async () => {
+  try {
+    const response = await fetch(`http://localhost:3000/users/${username}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    setUserDetails(data);
+  } catch (error) {
+    console.error('Error fetching user details:', error);
+  }
+};  
 app.get('/users/', async (req, res) => {
   try {
     const usuarios = await obtenerUsuarios();
     res.send(usuarios);
   } catch (error) {
     res.status(500).send(error);
+  }
+});
+app.get('/users/:username', async (req, res) => {
+  try {
+    const { username } = req.params;
+    const usuarios = await cargarUsuarios(); // Suponiendo que esta función devuelve todos los usuarios
+    const usuario = usuarios.find(u => u.username === username);
+    if (usuario) {
+      res.json(usuario);
+    } else {
+      res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+  } catch (error) {
+    console.error('Error al buscar el usuario:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 });
 

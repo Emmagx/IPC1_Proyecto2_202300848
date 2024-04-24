@@ -52,6 +52,46 @@
     },
     {
       "id": 6,
+      "descripción": "Otro Post de ejemplo",
+      "códigousuario": "456",
+      "categoría": "Especial",
+      "fechahora": "2024-04-24T12:00:00Z",
+      "anónimo": true,
+      "imagen": null,
+      "likes": 5
+    },
+    {
+      "id": 7,
+      "descripción": "Primer post del sistema",
+      "códigousuario": "001",
+      "categoría": "General",
+      "fechahora": "2024-01-01T12:00:00Z",
+      "anónimo": false,
+      "imagen": null,
+      "likes": 1
+    },
+    {
+      "id": 8,
+      "descripción": "Segundo post importante",
+      "códigousuario": "002",
+      "categoría": "Noticias",
+      "fechahora": "2024-01-02T13:00:00Z",
+      "anónimo": true,
+      "imagen": "imagen2.jpg",
+      "likes": 8
+    },
+    {
+      "id": 9,
+      "descripción": "Aviso de eventos",
+      "códigousuario": "003",
+      "categoría": "Eventos",
+      "fechahora": "2024-01-03T14:00:00Z",
+      "anónimo": false,
+      "imagen": null,
+      "likes": 2
+    },
+    {
+      "id": 10,
       "descripción": "Consejos de estudio",
       "códigousuario": "004",
       "categoría": "Educación",
@@ -61,7 +101,7 @@
       "likes": 10
     },
     {
-      "id": 7,
+      "id": 11,
       "descripción": "Resumen del día",
       "códigousuario": "005",
       "categoría": "Resumen",
@@ -69,16 +109,6 @@
       "anónimo": false,
       "imagen": null,
       "likes": 6
-    },
-    {
-      "id": 8,
-      "descripción": "Novedades tecnológicas",
-      "códigousuario": "006",
-      "categoría": "Tecnología",
-      "fechahora": "2024-01-06T17:00:00Z",
-      "anónimo": true,
-      "imagen": "imagen6.jpg",
-      "likes": 15
     }
   ]
 }

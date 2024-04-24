@@ -3,7 +3,7 @@ import cors from 'cors';
 import multer from 'multer';
 import fs from 'fs';
 import { cargarUsuarios, crearUsuario, obtenerUsuarios, actualizarUsuario, eliminarUsuario } from './users/usuarios.js';
-import { crearPost, obtenerPosts, actualizarPost, eliminarPost } from './posts/posts.js';
+import { cargarPosts, crearPost, obtenerPosts, actualizarPost, eliminarPost } from './posts/posts.js';
 
 const upload = multer({ dest: 'uploads/' });
 const app = express();
@@ -114,7 +114,21 @@ app.get('/posts/', async (req, res) => {
     res.status(500).send({ error: 'Error al obtener los posts' });
   }
 });
-
+app.get('/posts/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+      const posts = await cargarPosts(); // Asume que esta función devuelve todos los posts
+      const post = posts.find(p => p.id == id); // Asegúrate de comparar correctamente según sea necesario (== o === dependiendo de si necesitas coerción de tipo)
+      if (post) {
+          res.json(post);
+      } else {
+          res.status(404).send({ error: 'Post no encontrado' });
+      }
+  } catch (error) {
+      console.error('Error interno del servidor:', error);
+      res.status(500).send({ error: 'Error interno del servidor' });
+  }
+});
 app.patch('/posts/:id', async (req, res) => {
   try {
     const updatedPost = await actualizarPost(parseInt(req.params.id), req.body);

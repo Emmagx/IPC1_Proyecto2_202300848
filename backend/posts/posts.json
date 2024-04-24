@@ -2,7 +2,7 @@
   "posts": [
     {
       "id": 1,
-      "descripción": "Post de ejemplo",
+      "descripción": "Post editado desde detalles",
       "códigousuario": "123",
       "categoría": "General",
       "fechahora": "2024-04-23T12:00:00Z",

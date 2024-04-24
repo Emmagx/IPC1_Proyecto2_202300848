@@ -2,7 +2,7 @@ import { readFile, writeFile } from 'fs/promises';
 
 const archivoPosts = 'posts/posts.json';
 
-async function cargarPosts() {
+export async function cargarPosts() {
     try {
         const data = await readFile(archivoPosts, 'utf8');
         return JSON.parse(data).posts;
@@ -12,7 +12,7 @@ async function cargarPosts() {
     }
 }
 
-async function guardarPosts(posts) {
+export async function guardarPosts(posts) {
     try {
         const data = JSON.stringify({ posts: posts }, null, 2);
         await writeFile(archivoPosts, data, 'utf8');

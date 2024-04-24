@@ -5,7 +5,7 @@ import HeaderAdmin from '../../../components/HeaderAdmin';
 import './post.css'; // Asegúrate de que el path del CSS es correcto
 
 function Post() {
-    const { id } = useParams(); // Obtener el ID del post de la URL
+    const { id } = useParams();
     const [postDetails, setPostDetails] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const navigate = useNavigate();

@@ -141,7 +141,7 @@
       "carrera": "Ciencias y Sistemas",
       "mail": "ema@prueba.com",
       "contraseña": "Madelin1",
-      "isAdmin": true
+      "isAdmin": false
     }
   ]
 }

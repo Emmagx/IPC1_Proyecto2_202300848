@@ -10,6 +10,8 @@ import ViewUser from '../pages/adminDashboard/viewuser/viewuser'
 import User from '../pages/adminDashboard/viewuser/user'
 import PostsView from '../pages/adminDashboard/viewpost/postview'
 import Post from '../pages/adminDashboard/viewpost/post'
+import UserHome from '../pages/userDashboard/inicio'
+import Trending from '../pages/userDashboard/tendencias'
 export const AppRouter = () => {
   return (
 
@@ -25,6 +27,9 @@ export const AppRouter = () => {
         <Route path='/admin/userview/user/:username' element={<User/>}/>
         <Route path='/admin/posts' element={<PostsView/>}/>
         <Route path='/admin/posts/post/:id' element={<Post/>}/>
+        <Route path='/inicio' element={<UserHome/>}/>
+        <Route path='/trending' element={<Trending/>}/>
+
     </Routes>
 )
 }

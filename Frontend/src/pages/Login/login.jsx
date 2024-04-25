@@ -29,7 +29,7 @@ function Login() {
         if (data.isAdmin) {
           navigate('/admin');  // Ruta para administradores
         } else {
-          navigate('/user-dashboard');  // Ruta para usuarios no administradores
+          navigate('/inicio');  // Ruta para usuarios no administradores
         }
       } else {
         const errorData = await response.json();

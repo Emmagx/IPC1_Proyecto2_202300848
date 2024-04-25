@@ -12,6 +12,7 @@ import PostsView from '../pages/adminDashboard/viewpost/postview'
 import Post from '../pages/adminDashboard/viewpost/post'
 import UserHome from '../pages/userDashboard/inicio'
 import Trending from '../pages/userDashboard/tendencias'
+import Profile from '../pages/userDashboard/profile/profile'
 export const AppRouter = () => {
   return (
 
@@ -29,6 +30,7 @@ export const AppRouter = () => {
         <Route path='/admin/posts/post/:id' element={<Post/>}/>
         <Route path='/inicio' element={<UserHome/>}/>
         <Route path='/trending' element={<Trending/>}/>
+        <Route path='/profile' element={<Profile/>}/>
 
     </Routes>
 )

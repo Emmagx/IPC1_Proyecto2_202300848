@@ -91,7 +91,12 @@ app.post('/login', async (req, res) => {
   const user = usuarios.find(u => u.username === username && u.contraseña === password);
   
   if (user) {
-    res.status(200).json({ message: 'Inicio de sesión exitoso', isAdmin: user.isAdmin });
+    // Asegúrate de enviar el username en la respuesta
+    res.status(200).json({
+      message: 'Inicio de sesión exitoso',
+      isAdmin: user.isAdmin,
+      username: user.username  // Asegúrate de que esto está siendo enviado correctamente
+    });
   } else {
     res.status(401).json({ error: 'Inicio de sesión fallido. Usuario o contraseña incorrectos.' });
   }

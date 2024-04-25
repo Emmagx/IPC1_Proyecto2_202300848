@@ -134,12 +134,12 @@
     },
     {
       "username": "202200128",
-      "nombres": "Emanuel",
+      "nombres": "Emanuel cambio desde detalle",
       "apellidos": "Garcia",
       "genero": "Masculino",
       "facultad": "Ingenieria",
       "carrera": "Ciencias y Sistemas",
-      "mail": "ema@prueba.com",
+      "mail": "ema@prueeeba.com",
       "contraseña": "Madelin1",
       "isAdmin": false
     }

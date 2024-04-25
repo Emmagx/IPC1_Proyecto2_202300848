@@ -12,7 +12,7 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError('');
-
+  
     try {
       const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
@@ -21,11 +21,11 @@ function Login() {
         },
         body: JSON.stringify({ username, password })
       });
-
+  
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
-        // Evaluar el campo isAdmin y redirigir en consecuencia
+        localStorage.setItem('userId', data.username); // Asegúrate de que el backend devuelve el userId
+        // console.log(data.userId, ' ', userId)
         if (data.isAdmin) {
           navigate('/admin');  // Ruta para administradores
         } else {

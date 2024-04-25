@@ -17,10 +17,13 @@ function UserNavbar() {
     };
     
     const handleProfileClick = () => {
-        navigate('/perfil'); // Ruta a la página de perfil (asegúrate de que "/perfil" sea la ruta correcta en tu AppRouter)
+        navigate('/profile'); // Ruta a la página de perfil (asegúrate de que "/perfil" sea la ruta correcta en tu AppRouter)
     };
     
-
+    const handleInicioClick = () => {
+        navigate('/inicio'); // Ruta a la página de perfil (asegúrate de que "/perfil" sea la ruta correcta en tu AppRouter)
+    };
+    
     const handleCreatePost = () => {
         navigate('/crear-post'); // Ruta de creación de posts
     };
@@ -35,7 +38,7 @@ function UserNavbar() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Inicio</a>
+                            <a className="nav-link active"onClick={handleInicioClick} href="#">Inicio</a>
                         </li>
                         <li className="nav-item">
                         <a className="nav-link" href="#" onClick={handleTrendsClick}>Tendencias</a>

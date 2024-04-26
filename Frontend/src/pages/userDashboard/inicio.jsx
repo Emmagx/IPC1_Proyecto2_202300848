@@ -31,19 +31,24 @@ function UserHome() {
         fetchUsersAndPosts();
     }, []);
 
-    const getUserName = (userId) => {
-        return users[userId]?.nombres || 'Anónimo';
+    const getUserName = (userId, anonimo) => {
+        if (anonimo) {
+            return 'Anónimo';
+        }
+        return users[userId]?.nombres || 'Usuario Desconocido';
     };
 
     return (
         <div>
             <UserNavbar />
+            <h1 className='titulo-tendencias'> Inicio </h1>
             <div className="posts-container">
                 {posts.map(post => (
                     <div key={post.id} className="post">
                         <div className="post-header">
-                            <h5 className="user-name">{getUserName(post.códigousuario)}</h5>
+                            <h5 className="user-name">{getUserName(post.códigousuario, post.anónimo)}</h5>
                             <span className="post-category">{post.categoría}</span>
+                            <span className="post-fechaHora">{post.fechahora}</span>
                         </div>
                         <p className="post-description">{post.descripción}</p>
                         <div className="post-actions">

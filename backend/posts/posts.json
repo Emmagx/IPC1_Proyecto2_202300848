@@ -125,6 +125,7 @@
       "descripción": "Explorando la subida masiva",
       "categoría": "Fun",
       "anónimo": false,
+      "fechahora": "2024-04-26T14:30:38-06:00",
       "id": 13
     },
     {
@@ -132,6 +133,7 @@
       "descripción": "Segundo post masivo",
       "categoría": "Especial",
       "anónimo": true,
+      "fechahora": "2024-04-26T14:30:38-06:00",
       "id": 14
     },
     {
@@ -139,6 +141,7 @@
       "descripción": "Integración de funcionalidades",
       "categoría": "Fun",
       "anónimo": false,
+      "fechahora": "2024-04-26T14:30:38-06:00",
       "id": 15
     },
     {
@@ -146,7 +149,18 @@
       "descripción": "Novedades en la plataforma",
       "categoría": "Fun",
       "anónimo": true,
+      "fechahora": "2024-04-26T14:30:38-06:00",
       "id": 16
+    },
+    {
+      "id": 17,
+      "descripción": "hola con fecha correcta",
+      "códigousuario": "202200128",
+      "categoría": "Eventos",
+      "fechahora": "2024-04-26T14:32:28-06:00",
+      "anónimo": false,
+      "imagen": null,
+      "likes": 0
     }
   ]
 }

@@ -4,6 +4,7 @@ import multer from 'multer';
 import fs from 'fs';
 import { cargarUsuarios, crearUsuario, obtenerUsuarios, actualizarUsuario, eliminarUsuario } from './users/usuarios.js';
 import { obtenerCategorias, cargarPosts, crearPost, obtenerPosts, actualizarPost, eliminarPost } from './posts/posts.js';
+import moment from 'moment-timezone';
 const upload = multer({ dest: 'uploads/' });
 const app = express();
 const port = 3000;
@@ -115,7 +116,7 @@ app.post('/posts/', upload.single('image'), async (req, res) => {
       const maxId = posts.reduce((max, post) => Math.max(max, post.id), 0);
       const newId = maxId + 1;
       console.log(newId)
-      const fechahora = new Date().toISOString();
+      const fechahora = moment().tz("America/Mexico_City").format()
       const likes = 0;
 
       const newPost = {
@@ -195,7 +196,6 @@ app.post('/posts/mass_upload', upload.single('file'), async (req, res) => {
   try {
     const fileContent = fs.readFileSync(filePath, 'utf8');
     console.log("File content read:", fileContent.substring(0, 100)); // muestra solo los primeros 100 caracteres para evitar desbordamiento
-
     const data = JSON.parse(fileContent);
     console.log("Parsed data:", data);
 
@@ -204,13 +204,19 @@ app.post('/posts/mass_upload', upload.single('file'), async (req, res) => {
       return res.status(400).json({ error: 'Formato de archivo incorrecto.' });
     }
 
-    const validPosts = data.posts.filter(post => post.descripción && post.códigousuario && post.categoría && post.anónimo);
+    const validPosts = data.posts.filter(post => post.descripción && post.códigousuario && post.categoría && typeof post.anónimo === 'boolean');
     console.log("Valid posts:", validPosts);
     const results = [];
-
+    
     for (const post of validPosts) {
       try {
-        const createdPost = await crearPost(post);
+        // Agregar la fecha y hora actuales a cada post antes de crearlo
+        const postWithTimestamp = {
+          ...post,
+          fechahora: moment().tz("America/Mexico_City").format() // Ajusta a la zona horaria de la Ciudad de México, por ejemplo
+        };
+        
+        const createdPost = await crearPost(postWithTimestamp);
         console.log("Post created successfully:", createdPost);
         results.push(createdPost);
       } catch (error) {
@@ -226,7 +232,6 @@ app.post('/posts/mass_upload', upload.single('file'), async (req, res) => {
     res.status(500).json({ error: 'Error al procesar el archivo.' });
   } finally {
     fs.unlinkSync(filePath);
-    
     console.log("Temporary file deleted");
   }
 });

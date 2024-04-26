@@ -29,7 +29,10 @@
     border-radius: 10px;
     padding: 2px 8px;
 }
+.post-fechaHora{
+    background-color: #fff;
 
+}
 .post-description {
     margin: 10px 0;
 }

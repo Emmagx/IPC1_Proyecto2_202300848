@@ -8,7 +8,7 @@
     const [postDetails, setPostDetails] = useState({
       'codigousuario': localStorage.getItem('userId'), // Asumiendo que ya está almacenado
       'descripcion': '',
-      'categoria': 'Fun',
+      'categoria': '',
       'anonimo': false,
       'imagen': null,
     });
@@ -38,7 +38,10 @@
       });
     };
 
-
+    const handeExit = (e) => {
+      e.preventDefault();
+      navigate('/inicio');
+    };
     const handleSubmit = async (e) => {
       e.preventDefault();
 
@@ -117,7 +120,7 @@
             />
             <div className="create-post-actions">
               <button type="submit" className="create-post-btn publish">Publish</button>
-              <button type="button" className="create-post-btn cancel">Cancel</button>
+              <button type="button" className="create-post-btn cancel" onClick={handeExit}>Cancel</button>
             </div>
           </form>
         </div>

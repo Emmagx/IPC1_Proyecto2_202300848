@@ -36,17 +36,29 @@ export async function obtenerPosts() {
     return cargarPosts();
 }
 
-export async function actualizarPost(id, datosPost) {
+export async function actualizarPostLike(id, datosPost) {
     let posts = await cargarPosts();
-    const index = posts.findIndex(p => p.id === id);
+    const index = posts.findIndex(p => p.id == id);
     if (index !== -1) {
-        posts[index] = { ...posts[index], ...datosPost };
+        // Solo actualiza los likes, si es lo que pasaste en datosPost
+        posts[index].likes = datosPost.likes;
         await guardarPosts(posts);
         return posts[index];
     }
     throw new Error(`El post con id ${id} no existe.`);
 }
 
+export async function actualizarPost(id, datosPost) {
+    let posts = await cargarPosts();
+    const index = posts.findIndex(p => p.id === id);
+    if (index !== -1) {
+      posts[index] = { ...posts[index], ...datosPost };
+      await guardarPosts(posts);
+      return posts[index];
+    } else {
+      throw new Error(`El post con id ${id} no existe.`);
+    }
+  }
 export async function eliminarPost(id) {
     let posts = await cargarPosts();
     const postIndex = posts.findIndex(p => p.id === id);

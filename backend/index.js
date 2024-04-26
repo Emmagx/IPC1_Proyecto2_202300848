@@ -3,11 +3,11 @@ import cors from 'cors';
 import multer from 'multer';
 import fs from 'fs';
 import { cargarUsuarios, crearUsuario, obtenerUsuarios, actualizarUsuario, eliminarUsuario } from './users/usuarios.js';
-import { obtenerCategorias, cargarPosts, crearPost, obtenerPosts, actualizarPost, eliminarPost } from './posts/posts.js';
+import { actualizarPostLike, obtenerCategorias, cargarPosts, crearPost, obtenerPosts, actualizarPost, eliminarPost } from './posts/posts.js';
 import moment from 'moment-timezone';
 const upload = multer({ dest: 'uploads/' });
 const app = express();
-const port = 3000;
+const port = 3000;  
 
 app.use(cors({
   origin: 'http://localhost:5173',
@@ -282,6 +282,25 @@ app.get('/categorias', async (req, res) => {
     res.json(categorias);
   } catch (error) {
     console.error('Error al obtener categorías:', error);
+    res.status(500).send({ error: 'Error interno del servidor' });
+  }
+});
+app.patch('/posts/like/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const posts = await cargarPosts();
+    const postIndex = posts.findIndex(p => p.id == id);
+    if (postIndex === -1) {
+      return res.status(404).send({ error: 'Post no encontrado' });
+    }
+    posts[postIndex].likes += 1; // Incrementa los likes
+
+    // Solo debes pasar el ID y los datosPost a actualizarPost
+    await actualizarPostLike(id, { likes: posts[postIndex].likes });
+
+    res.status(200).json(posts[postIndex]);
+  } catch (error) {
+    console.error('Error al dar like al post:', error);
     res.status(500).send({ error: 'Error interno del servidor' });
   }
 });

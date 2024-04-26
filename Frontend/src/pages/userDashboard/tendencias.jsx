@@ -1,11 +1,11 @@
-// Trending.jsx
 import React, { useEffect, useState } from 'react';
 import UserNavbar from '../../components/NavBar'; 
-import './tendencias.css'; // Asegúrate de que el path del CSS es correcto
+import './tendencias.css';
 
 function Trending() {
     const [posts, setPosts] = useState([]);
     const [users, setUsers] = useState({});
+    const [likedPosts, setLikedPosts] = useState({});
 
     useEffect(() => {
         const fetchUsersAndPosts = async () => {
@@ -24,7 +24,6 @@ function Trending() {
                 }, {});
 
                 setUsers(usersObj);
-                // Ordenar los posts por likes de mayor a menor antes de actualizar el estado
                 setPosts(postsData.sort((a, b) => b.likes - a.likes));
             } catch (error) {
                 console.error('Failed to fetch data:', error);
@@ -32,6 +31,28 @@ function Trending() {
         };
         fetchUsersAndPosts();
     }, []);
+
+    const handleLike = async (postId) => {
+        if (likedPosts[postId]) {
+            console.log('Ya diste like a este post');
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://localhost:3000/posts/like/${postId}`, {
+                method: 'PATCH',
+            });
+            if (response.ok) {
+                const updatedPost = await response.json();
+                setPosts(posts.map(p => p.id === postId ? updatedPost : p));
+                setLikedPosts({...likedPosts, [postId]: true});
+            } else {
+                console.error('No se pudo dar like al post');
+            }
+        } catch (error) {
+            console.error('Error al dar like:', error);
+        }
+    };
 
     const getUserName = (userId, anonimo) => {
         if (anonimo) {
@@ -41,14 +62,13 @@ function Trending() {
     };
 
     return (
-        
         <div>
             <UserNavbar />
-            <h1 className='titulo-tendencias'> Tendencias </h1>
+            <h1 className='titulo-tendencias'>Tendencias</h1>
             <div className="posts-container">
                 {posts.map(post => (
                     <div key={post.id} className="post">
-                    <div className="post-header">
+                        <div className="post-header">
                             <h5 className="user-name">{getUserName(post.códigousuario, post.anónimo)}</h5>
                             <div className="post-metadata">
                                 <span className="post-fechaHora">{post.fechahora}</span>
@@ -57,13 +77,18 @@ function Trending() {
                         </div>
                         <p className="post-description">{post.descripción}</p>
                         <div className="post-actions">
-                            <button className="like-button">{post.likes} Me gusta</button>
+                            <button
+                                className="like-button"
+                                onClick={() => handleLike(post.id)}
+                                disabled={likedPosts[post.id]}
+                            >
+                                {post.likes} Me gusta
+                            </button>
                             <button className="comment-button">Comentar</button>
                         </div>
                     </div>
                 ))}
             </div>
-            
         </div>
     );
 }

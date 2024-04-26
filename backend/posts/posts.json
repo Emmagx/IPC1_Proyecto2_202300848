@@ -2,13 +2,13 @@
   "posts": [
     {
       "id": 1,
-      "descripción": "Post editado desde detalles",
+      "descripción": "Post editado desde detalles Aaaaa",
       "códigousuario": "202300848",
       "categoría": "General",
       "fechahora": "2024-04-23T12:00:00Z",
       "anónimo": false,
       "imagen": null,
-      "likes": 0
+      "likes": 20
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "fechahora": "2024-04-24T12:00:00Z",
       "anónimo": true,
       "imagen": null,
-      "likes": 5
+      "likes": 14
     },
     {
       "id": 3,
@@ -28,7 +28,7 @@
       "fechahora": "2024-01-01T12:00:00Z",
       "anónimo": false,
       "imagen": null,
-      "likes": 1
+      "likes": 2
     },
     {
       "id": 4,

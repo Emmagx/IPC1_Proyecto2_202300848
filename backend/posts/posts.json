@@ -109,6 +109,16 @@
       "anónimo": false,
       "imagen": null,
       "likes": 6
+    },
+    {
+      "id": 12,
+      "descripcion": "Post Desde crear post",
+      "códigousuario": "202200128",
+      "categoría": "Fun",
+      "fechahora": "2024-04-26T19:07:54.034Z",
+      "anónimo": false,
+      "imagen": null,
+      "likes": 0
     }
   ]
 }

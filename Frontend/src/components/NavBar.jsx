@@ -25,7 +25,7 @@ function UserNavbar() {
     };
     
     const handleCreatePost = () => {
-        navigate('/crear-post'); // Ruta de creación de posts
+        navigate('/NewPost'); // Ruta de creación de posts
     };
 
     return (

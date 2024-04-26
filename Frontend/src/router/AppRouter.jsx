@@ -13,6 +13,7 @@ import Post from '../pages/adminDashboard/viewpost/post'
 import UserHome from '../pages/userDashboard/inicio'
 import Trending from '../pages/userDashboard/tendencias'
 import Profile from '../pages/userDashboard/profile/profile'
+import NewUserPost from '../pages/userDashboard/post/post'
 export const AppRouter = () => {
   return (
 
@@ -31,6 +32,7 @@ export const AppRouter = () => {
         <Route path='/inicio' element={<UserHome/>}/>
         <Route path='/trending' element={<Trending/>}/>
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/NewPost' element={<NewUserPost/>}/>
 
     </Routes>
 )

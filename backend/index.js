@@ -4,7 +4,6 @@ import multer from 'multer';
 import fs from 'fs';
 import { cargarUsuarios, crearUsuario, obtenerUsuarios, actualizarUsuario, eliminarUsuario } from './users/usuarios.js';
 import { cargarPosts, crearPost, obtenerPosts, actualizarPost, eliminarPost } from './posts/posts.js';
-
 const upload = multer({ dest: 'uploads/' });
 const app = express();
 const port = 3000;
@@ -102,12 +101,39 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.post('/posts/', async (req, res) => {
+
+app.post('/posts/', upload.single('image'), async (req, res) => {
+
   try {
-    const post = await crearPost(req.body);
-    res.status(201).send(post);
+    const { descripcion, codigousuario, categoria, anonimo } = req.body;
+      console.log(codigousuario);
+      console.log(descripcion);
+      console.log(categoria);
+      console.log(anonimo);
+      console.log(req.body);
+      const posts = await cargarPosts();
+      const maxId = posts.reduce((max, post) => Math.max(max, post.id), 0);
+      const newId = maxId + 1;
+      console.log(newId)
+      const fechahora = new Date().toISOString();
+      const likes = 0;
+
+      const newPost = {
+          id: newId,
+          descripcion: descripcion,
+          códigousuario: codigousuario,
+          categoría: categoria,
+          fechahora,
+          anónimo: anonimo === 'true',
+          imagen: req.file ? req.file.path : null,
+          likes
+      };
+
+      const postCreado = await crearPost(newPost);
+      res.status(201).json(postCreado);
   } catch (error) {
-    res.status(500).send({ error: 'Error al crear el post' });
+      console.error('Error al crear el post:', error);
+      res.status(500).send({ error: 'Error interno del servidor' });
   }
 });
 

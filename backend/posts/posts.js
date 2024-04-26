@@ -55,5 +55,15 @@ export async function eliminarPost(id) {
     }
     posts.splice(postIndex, 1);
     await guardarPosts(posts);
-    return true; // Indicar éxito
+    return true;
 }
+export async function obtenerCategorias() {
+    const post = await cargarPosts();
+    const categorias = new Set();
+    post.forEach(post => {
+      if (post.categoría && !categorias.has(post.categoría)) {
+        categorias.add(post.categoría);
+      }
+    });
+    return Array.from(categorias);
+  }

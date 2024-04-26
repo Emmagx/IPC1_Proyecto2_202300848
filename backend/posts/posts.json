@@ -112,13 +112,41 @@
     },
     {
       "id": 12,
-      "descripcion": "Post Desde crear post",
+      "descripción": "Post Desde crear post",
       "códigousuario": "202200128",
       "categoría": "Fun",
       "fechahora": "2024-04-26T19:07:54.034Z",
       "anónimo": false,
       "imagen": null,
       "likes": 0
+    },
+    {
+      "códigousuario": "213987654",
+      "descripción": "Explorando la subida masiva",
+      "categoría": "Fun",
+      "anónimo": false,
+      "id": 13
+    },
+    {
+      "códigousuario": "213987654",
+      "descripción": "Segundo post masivo",
+      "categoría": "Especial",
+      "anónimo": true,
+      "id": 14
+    },
+    {
+      "códigousuario": "213987654",
+      "descripción": "Integración de funcionalidades",
+      "categoría": "Fun",
+      "anónimo": false,
+      "id": 15
+    },
+    {
+      "códigousuario": "213987654",
+      "descripción": "Novedades en la plataforma",
+      "categoría": "Fun",
+      "anónimo": true,
+      "id": 16
     }
   ]
 }

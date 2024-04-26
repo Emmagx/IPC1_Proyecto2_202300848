@@ -1,7 +1,8 @@
-  import React, { useState } from 'react';
   import UserNavbar from '../../../components/NavBar';
+  import React, { useState, useEffect } from 'react';
+  import { useNavigate } from 'react-router-dom';
   import './post.css'
-
+  
   function NewUserPost() {
     // Actualiza los nombres de los estados para que coincidan con los campos del formulario
     const [postDetails, setPostDetails] = useState({
@@ -11,6 +12,23 @@
       'anonimo': false,
       'imagen': null,
     });
+    const [categorias, setCategorias] = useState([]);
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const navigate = useNavigate();
+    useEffect(() => {
+      // Esta función debería llamarse al montar el componente
+      const cargarCategorias = async () => {
+        try {
+          const respuesta = await fetch('http://localhost:3000/categorias');
+          const categoriasDesdeServidor = await respuesta.json();
+          setCategorias(categoriasDesdeServidor);
+        } catch (error) {
+          console.error('Error al cargar las categorías:', error);
+        }
+      };
+  
+      cargarCategorias();}
+      , []);
 
     const handleChange = (e) => {
       const { name, value, type, checked, files } = e.target;
@@ -33,10 +51,10 @@
       if (postDetails['imagen']) {
         formData.append('imagen', postDetails['imagen']);
       }
-      console.log(postDetails.anonimo);
-      console.log(postDetails.categoria);
-      console.log(formData.get('descripcion'));
-      console.log(formData.get('codigousuario'));
+      // console.log(postDetails.anonimo);
+      // console.log(postDetails.categoria);
+      // console.log(formData.get('descripcion'));
+      // console.log(formData.get('codigousuario'));
       try {
         const response = await fetch('http://localhost:3000/posts/', {
           method: 'POST',
@@ -46,7 +64,9 @@
 
           if (response.ok) {
               const result = await response.json();
-              console.log('Post creado exitosamente', result);
+              // console.log('Post creado exitosamente', result);
+              alert('Post creado exitosamente!');
+              navigate('/inicio'); 
           } else {
               const error = await response.json();
               console.error('Error al crear post:', error);
@@ -60,7 +80,7 @@
       <div className="create-post-page">
         <UserNavbar />
         <div className="create-post-container">
-          <h1 className="create-post-title">New Post</h1>
+          <h1 className="create-post-title">Post</h1>
           <form onSubmit={handleSubmit} className="create-post-form">
           <textarea
                 className="create-post-textarea"
@@ -75,7 +95,10 @@
               value={postDetails.categoria}
               onChange={handleChange}
             >
-              <option value="Fun">Fun</option>
+              
+              {categorias.map((categoria) => (
+                <option key={categoria} value={categoria}>{categoria}</option>
+              ))}
             </select>
             <label className="create-post-anonymous">
               <input

@@ -3,7 +3,7 @@ import cors from 'cors';
 import multer from 'multer';
 import fs from 'fs';
 import { cargarUsuarios, crearUsuario, obtenerUsuarios, actualizarUsuario, eliminarUsuario } from './users/usuarios.js';
-import { cargarPosts, crearPost, obtenerPosts, actualizarPost, eliminarPost } from './posts/posts.js';
+import { obtenerCategorias, cargarPosts, crearPost, obtenerPosts, actualizarPost, eliminarPost } from './posts/posts.js';
 const upload = multer({ dest: 'uploads/' });
 const app = express();
 const port = 3000;
@@ -120,7 +120,7 @@ app.post('/posts/', upload.single('image'), async (req, res) => {
 
       const newPost = {
           id: newId,
-          descripcion: descripcion,
+          descripción: descripcion,
           códigousuario: codigousuario,
           categoría: categoria,
           fechahora,
@@ -204,7 +204,7 @@ app.post('/posts/mass_upload', upload.single('file'), async (req, res) => {
       return res.status(400).json({ error: 'Formato de archivo incorrecto.' });
     }
 
-    const validPosts = data.posts.filter(post => post.descripción && post.códigousuario && post.categoría && post.fechahora);
+    const validPosts = data.posts.filter(post => post.descripción && post.códigousuario && post.categoría && post.anónimo);
     console.log("Valid posts:", validPosts);
     const results = [];
 
@@ -268,5 +268,15 @@ app.post('/users/mass_upload', upload.single('file'), async (req, res) => {
     res.status(500).json({ error: 'Failed to process the file.' });
   } finally {
     fs.unlinkSync(filePath); // Eliminar el archivo después de procesarlo o en caso de error
+  }
+});
+
+app.get('/categorias', async (req, res) => {
+  try {
+    const categorias = await obtenerCategorias();
+    res.json(categorias);
+  } catch (error) {
+    console.error('Error al obtener categorías:', error);
+    res.status(500).send({ error: 'Error interno del servidor' });
   }
 });

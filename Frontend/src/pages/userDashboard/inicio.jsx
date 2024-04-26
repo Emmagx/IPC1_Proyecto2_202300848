@@ -47,8 +47,10 @@ function UserHome() {
                     <div key={post.id} className="post">
                         <div className="post-header">
                             <h5 className="user-name">{getUserName(post.códigousuario, post.anónimo)}</h5>
-                            <span className="post-category">{post.categoría}</span>
-                            <span className="post-fechaHora">{post.fechahora}</span>
+                            <div className="post-metadata">
+                                <span className="post-fechaHora">{post.fechahora}</span>
+                                <span className="post-category">{post.categoría}</span>
+                            </div>
                         </div>
                         <p className="post-description">{post.descripción}</p>
                         <div className="post-actions">

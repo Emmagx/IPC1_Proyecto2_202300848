@@ -161,6 +161,16 @@
       "anónimo": false,
       "imagen": null,
       "likes": 0
+    },
+    {
+      "id": 18,
+      "descripción": "klsjfalkjas",
+      "códigousuario": "202200128",
+      "categoría": "Noticias",
+      "fechahora": "2024-04-26T22:56:44-06:00",
+      "anónimo": false,
+      "imagen": null,
+      "likes": 1
     }
   ]
 }

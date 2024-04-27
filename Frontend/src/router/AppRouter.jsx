@@ -33,6 +33,7 @@ export const AppRouter = () => {
         <Route path='/trending' element={<Trending/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/NewPost' element={<NewUserPost/>}/>
+        <Route path='/' element={<Login/>}/>
 
     </Routes>
 )

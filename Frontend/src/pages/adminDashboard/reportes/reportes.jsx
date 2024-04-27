@@ -15,12 +15,33 @@ function Reportes() {
     fetchTopUsers();
   }, []);
 
+  const barOptions = {
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          precision: 0
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
+    responsive: false,
+    maintainAspectRatio: false
+  };
+  
+  
   const fetchTopPosts = async () => {
     const response = await fetch('http://localhost:3000/posts');
     const posts = await response.json();
     // Asegúrate de que el array 'posts' incluya los IDs y los likes de los posts
     const sortedPosts = posts.sort((a, b) => b.likes - a.likes).slice(0, 5);
     setTopPosts(sortedPosts);
+    console.log(topUsersData);
+
   };
 
   const fetchPostsByCategory = async () => {
@@ -34,15 +55,28 @@ function Reportes() {
   };
 
   const fetchTopUsers = async () => {
-    const response = await fetch('http://localhost:3000/users');
-    const users = await response.json();
-    const userCounts = users.reduce((acc, user) => {
-      acc[user.username] = (acc[user.username] || 0) + user.posts.length;
-      return acc;
-    }, {});
-    const sortedUsers = Object.entries(userCounts).map(([key, value]) => ({ username: key, posts: value }))
-      .sort((a, b) => b.posts - a.posts).slice(0, 10);
-    setTopUsers(sortedUsers);
+    try {
+      const usersResponse = await fetch('http://localhost:3000/users');
+      const usersData = await usersResponse.json();
+
+      const postsResponse = await fetch('http://localhost:3000/posts');
+      const postsData = await postsResponse.json();
+
+      const userPostCounts = postsData.reduce((acc, post) => {
+        acc[post.códigousuario] = (acc[post.códigousuario] || 0) + 1;
+        return acc;
+      }, {});
+
+      const usersWithPostCounts = usersData.map(user => ({
+        username: user.username,
+        posts: userPostCounts[user.id] || 0
+      })).sort((a, b) => b.posts - a.posts).slice(0, 10);
+
+      console.log("Top Users Data:", usersWithPostCounts);  // Añadir para depuración
+      setTopUsers(usersWithPostCounts);
+    } catch (error) {
+      console.error('Error fetching data for top users:', error);
+    }
   };
 
   const pieOptions = {
@@ -74,12 +108,13 @@ function Reportes() {
   const topUsersData = {
     labels: topUsers.map(user => user.username),
     datasets: [{
-      data: topUsers.map(user => user.posts),
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgba(255, 99, 132, 1)',
-      borderWidth: 1
+        label: 'Número de Publicaciones',
+        data: topUsers.map(user => user.posts), 
+        backgroundColor: 'rgba(54, 162, 235, 0.2)', 
+        borderColor: 'rgba(54, 162, 235, 1)', 
+        borderWidth: 1
     }]
-  };
+};
 
   return (
     <div className="report-container">
@@ -96,7 +131,7 @@ function Reportes() {
     </div>
     <div className="chart-box">
       <div className="chart-title">Top 10 Usuarios con más Publicaciones</div>
-      <Bar data={topUsersData} options={pieOptions} />
+      <Bar data={topUsersData} options={barOptions} />
     </div>
   </div>
 </div>

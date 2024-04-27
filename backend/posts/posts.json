@@ -8,7 +8,7 @@
       "fechahora": "2024-04-23T12:00:00Z",
       "anónimo": false,
       "imagen": null,
-      "likes": 20
+      "likes": 21
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "fechahora": "2024-04-24T12:00:00Z",
       "anónimo": true,
       "imagen": null,
-      "likes": 14
+      "likes": 15
     },
     {
       "id": 3,
@@ -28,7 +28,7 @@
       "fechahora": "2024-01-01T12:00:00Z",
       "anónimo": false,
       "imagen": null,
-      "likes": 2
+      "likes": 3
     },
     {
       "id": 4,

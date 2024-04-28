@@ -153,6 +153,17 @@
       "mail": "laura.martinez@example.com",
       "contraseña": "supersecure",
       "isAdmin": false
+    },
+    {
+      "username": "1",
+      "nombres": "Prueba",
+      "apellidos": "11",
+      "genero": "Otro",
+      "facultad": "123",
+      "carrera": "231",
+      "mail": "231@bt.com",
+      "contraseña": "123",
+      "isAdmin": false
     }
   ]
 }

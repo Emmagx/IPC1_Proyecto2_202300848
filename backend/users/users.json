@@ -134,13 +134,24 @@
     },
     {
       "username": "202200128",
-      "nombres": "Emanuel cambio desde detalle",
+      "nombres": "Emanuel cambio",
       "apellidos": "Garcia",
-      "genero": "Masculino",
+      "genero": "Masculino ",
       "facultad": "Ingenieria",
-      "carrera": "Ciencias y Sistemas",
+      "carrera": "Ciencias y Sistemas ",
       "mail": "ema@prueeeba.com",
       "contraseña": "Madelin1",
+      "isAdmin": false
+    },
+    {
+      "username": "234214",
+      "nombres": "brayan",
+      "apellidos": "Emanuel",
+      "genero": "Femenino",
+      "facultad": "Ingenieria",
+      "carrera": "Ciencias y Sistemas",
+      "mail": "a@a.com",
+      "contraseña": "1234",
       "isAdmin": false
     }
   ]

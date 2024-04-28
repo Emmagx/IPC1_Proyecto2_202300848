@@ -27,17 +27,23 @@ function Trending() {
                     return acc;
                 }, {});
         
-                setUsers(usersObj);
-                setPosts(postsData.sort((a, b) => b.likes - a.likes));
-        
-                // Fetch comments for each post
-                const initialComments = {};
-                await Promise.all(postsData.map(async post => {
+                // Cargar comentarios y contarlos para cada post
+                const commentsData = await Promise.all(postsData.map(async post => {
                     const response = await fetch(`http://localhost:3000/comments/${post.id}`);
-                    initialComments[post.id] = response.ok ? await response.json() : [];
+                    return response.ok ? await response.json() : [];
                 }));
         
-                setComments(initialComments);
+                const postsWithCommentCounts = postsData.map((post, index) => ({
+                    ...post,
+                    commentCount: commentsData[index].length  // Agregar recuento de comentarios al post
+                }));
+        
+                setUsers(usersObj);
+                setPosts(postsWithCommentCounts.sort((a, b) => b.likes - a.likes));
+                setComments(commentsData.reduce((acc, curr, index) => {
+                    acc[postsData[index].id] = curr;
+                    return acc;
+                }, {}));
             } catch (error) {
                 console.error('Failed to fetch data:', error);
             }
@@ -45,6 +51,7 @@ function Trending() {
         
         fetchData();
     }, []);
+    
 
     const handleLike = async (postId) => {
         if (likedPosts[postId]) {
@@ -114,6 +121,7 @@ function Trending() {
                             <div className="post-metadata">
                                 <span className="post-fechaHora">{new Date(post.fechahora).toLocaleString()}</span>
                                 <span className="post-category">{post.categoría}</span>
+                                <span className="comment-count">Comentarios: {post.commentCount}</span>
                             </div>
                         </div>
                         <p className="post-description">{post.descripción}</p>
@@ -145,7 +153,7 @@ function Trending() {
                                 )}
                                 <form onSubmit={(event) => handleNewComment(event, post.id)}>
                                     <input type="text" placeholder="Add a comment" required />
-                                    <button type="submit">Send</button>
+                                    <button type="submit">Enviar</button>
                                 </form>
                             </div>
                         )}

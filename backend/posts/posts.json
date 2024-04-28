@@ -28,17 +28,7 @@
       "fechahora": "2024-01-01T12:00:00Z",
       "anónimo": false,
       "imagen": null,
-      "likes": 3
-    },
-    {
-      "id": 4,
-      "descripción": "Segundo post importante",
-      "códigousuario": "202300848",
-      "categoría": "Noticias",
-      "fechahora": "2024-01-02T13:00:00Z",
-      "anónimo": true,
-      "imagen": "imagen2.jpg",
-      "likes": 8
+      "likes": 4
     },
     {
       "id": 5,
@@ -171,6 +161,16 @@
       "anónimo": false,
       "imagen": null,
       "likes": 1
+    },
+    {
+      "id": 19,
+      "descripción": "Descripción del post",
+      "códigousuario": "1",
+      "categoría": "General",
+      "fechahora": "2024-04-27T19:27:52-06:00",
+      "anónimo": false,
+      "imagen": null,
+      "likes": 0
     }
   ]
 }

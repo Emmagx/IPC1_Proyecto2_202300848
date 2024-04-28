@@ -2,8 +2,8 @@
   "users": [
     {
       "username": "202300848",
-      "nombres": "Brayan Emanuel",
-      "apellidos": "Garcia",
+      "nombres": "Juan Actualizado",
+      "apellidos": "Pérez Gómez",
       "genero": "Masculino",
       "facultad": "Ingenieria",
       "carrera": "Ciencias y Sistemas",
@@ -36,17 +36,6 @@
     {
       "username": "2026432145745300814",
       "nombres": "Laura",
-      "apellidos": "Martinez",
-      "genero": "Femenino",
-      "facultad": "Arquitectura",
-      "carrera": "Diseño Gráfico",
-      "mail": "laura.martinez@example.com",
-      "contraseña": "supersecure",
-      "isAdmin": false
-    },
-    {
-      "username": "456341254",
-      "nombres": "Prueba",
       "apellidos": "Martinez",
       "genero": "Femenino",
       "facultad": "Arquitectura",
@@ -152,6 +141,17 @@
       "carrera": "Ciencias y Sistemas",
       "mail": "a@a.com",
       "contraseña": "1234",
+      "isAdmin": false
+    },
+    {
+      "username": "1234546613",
+      "nombres": "Laura",
+      "apellidos": "Garcia",
+      "genero": "Femenino",
+      "facultad": "arquitectura",
+      "carrera": "Diseño Gráfico",
+      "mail": "laura.martinez@example.com",
+      "contraseña": "supersecure",
       "isAdmin": false
     }
   ]

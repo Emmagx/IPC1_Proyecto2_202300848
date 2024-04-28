@@ -9,29 +9,32 @@ function UserHome() {
 
     useEffect(() => {
         const fetchUsersAndPosts = async () => {
-            try {
-                const usersResponse = await fetch('http://localhost:3000/users');
-                const postsResponse = await fetch('http://localhost:3000/posts');
-                if (!usersResponse.ok || !postsResponse.ok) {
-                    throw new Error('Error fetching data');
-                }
-                const usersData = await usersResponse.json();
-                const postsData = await postsResponse.json();
-
-                const usersObj = usersData.reduce((acc, user) => {
-                    acc[user.username] = user;
-                    return acc;
-                }, {});
-
-                setUsers(usersObj);
-                setPosts(postsData);
-            } catch (error) {
-                console.error('Failed to fetch data:', error);
+          try {
+            const usersResponse = await fetch('http://localhost:3000/users');
+            const postsResponse = await fetch('http://localhost:3000/posts');
+            if (!usersResponse.ok || !postsResponse.ok) {
+              throw new Error('Error fetching data');
             }
+            const usersData = await usersResponse.json();
+            let postsData = await postsResponse.json();
+      
+            // Sort posts by date from most recent to oldest
+            postsData = postsData.sort((a, b) => new Date(b.fechahora) - new Date(a.fechahora));
+      
+            const usersObj = usersData.reduce((acc, user) => {
+              acc[user.username] = user;
+              return acc;
+            }, {});
+      
+            setUsers(usersObj);
+            setPosts(postsData);
+          } catch (error) {
+            console.error('Failed to fetch data:', error);
+          }
         };
-
+      
         fetchUsersAndPosts();
-    }, []);
+      }, []);
 
     const handleLike = async (postId) => {
         if (likedPosts[postId]) {

@@ -33,10 +33,40 @@ function ViewUser() {
   const handleViewUser = (username) => {
     navigate(`/admin/userview/user/${username}`); // Asegúrate de que la ruta coincida con tu configuración en AppRouter
   };
+  const downloadCsv = async () => {
+    try {
+        const response = await fetch('http://localhost:3000/users');  // Make sure this URL is correct for fetching user data
+        if (!response.ok) throw new Error('Failed to fetch users');
+
+        const users = await response.json();
+        const headers = [
+            "Username", "Nombres", "Apellidos", "Género", "Facultad", 
+            "Carrera", "Email", "Contraseña", "isAdmin"
+        ];
+        const csvContent = [
+            headers.join(","),
+            ...users.map(user => [
+                user.username, user.nombres, user.apellidos, user.genero, user.facultad,
+                user.carrera, user.mail, user.contraseña, user.isAdmin
+            ].join(","))
+        ].join("\n");
+
+        const encodedUri = encodeURI(`data:text/csv;charset=utf-8,${csvContent}`);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "users.csv");
+        document.body.appendChild(link); // Required for FF
+        link.click(); // This will download the data file named "users.csv".
+        link.remove();
+    } catch (error) {
+        console.error('Error downloading CSV:', error);
+    }
+};
 
   return (
     <div>
       <HeaderAdmin />
+      <button onClick={downloadCsv} style={{ marginBottom: '20px' }}>Descargar CSV</button>
       <div className="user-container">
         <h1>Usuarios de USocial</h1>
         <table className="user-table">

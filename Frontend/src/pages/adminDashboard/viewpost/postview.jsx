@@ -34,11 +34,46 @@ function PostsView() {
     const handleViewPost = (id) => {
         navigate(`/admin/posts/post/${id}`); 
     };
+const downloadPostsCsv = async () => {
+    try {
+        const response = await fetch('http://localhost:3000/posts');
+        if (!response.ok) throw new Error('Failed to fetch posts');
+
+        const posts = await response.json();
+        const headers = [
+            "ID", "Descripción", "Usuario", "Categoría", "Fecha y Hora", "Anónimo", "Imagen", "Likes"
+        ];
+        const csvContent = [
+            headers.join(","),
+            ...posts.map(post => [
+                post.id, 
+                `"${post.descripción.replace(/"/g, '""')}"`, // Ensure any commas in descriptions are handled correctly
+                post.códigousuario,
+                post.categoría,
+                post.fechahora,
+                post.anónimo,
+                post.imagen ? post.imagen : "N/A", // Handle null images
+                post.likes
+            ].join(","))
+        ].join("\n");
+
+        const encodedUri = encodeURI(`data:text/csv;charset=utf-8,${csvContent}`);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "posts.csv");
+        document.body.appendChild(link); // Required for FF
+        link.click(); // This will download the data file named "posts.csv".
+        link.remove();
+    } catch (error) {
+        console.error('Error downloading CSV:', error);
+    }
+};
 
     return (
         <div>
             <HeaderAdmin />
             <h1>Lista de Posts</h1>
+            <button onClick={downloadPostsCsv} style={{ marginBottom: '20px' }}>Descargar CSV</button>
             <table className="posts-table">
                 <thead>
                     <tr>

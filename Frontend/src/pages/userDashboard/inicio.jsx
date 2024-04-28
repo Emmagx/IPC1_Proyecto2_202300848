@@ -114,7 +114,7 @@ function UserHome() {
                     <div className="post-header">
                         <h5 className="user-name">{getUserName(post.códigousuario, post.anónimo)}</h5>
                         <div className="post-metadata">
-                            <span className="post-fechaHora">{post.fechahora}</span>
+                            <span className="post-fechaHora">{new Date(post.fechahora).toLocaleString()}</span>
                             <span className="post-category">{post.categoría}</span>
                         </div>
                     </div>
@@ -139,7 +139,7 @@ function UserHome() {
                             {comments[post.id] && comments[post.id].length > 0 ? (
                                 comments[post.id].map(comment => (
                                     <div key={comment.id} className="comment">
-                                        <span>{comment.text} - {new Date(comment.timestamp).toLocaleString()}</span>
+                                        <span>{getUserName(comment.userId, false)} - {comment.text} - {new Date(comment.timestamp).toLocaleString()}</span>
                                     </div>
                                 ))
                             ) : (

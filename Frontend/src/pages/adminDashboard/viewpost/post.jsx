@@ -1,4 +1,3 @@
-// Post.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import HeaderAdmin from '../../../components/HeaderAdmin';
@@ -27,8 +26,12 @@ function Post() {
     }, [id]);
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setPostDetails({ ...postDetails, [name]: value });
+        const { name, value, type, checked } = e.target;
+        if (type === "checkbox") {
+            setPostDetails({ ...postDetails, [name]: checked });
+        } else {
+            setPostDetails({ ...postDetails, [name]: value });
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -65,7 +68,26 @@ function Post() {
                         Categoría:
                         <input type="text" name="categoría" value={postDetails.categoría || ''} onChange={handleInputChange} disabled={!isEditing} />
                     </label>
-                    {/* Añade aquí más campos según sea necesario */}
+                    <label>
+                        Usuario:
+                        <input type="text" name="códigousuario" value={postDetails.códigousuario || ''} onChange={handleInputChange} disabled={!isEditing} />
+                    </label>
+                    <label>
+                        Fecha y Hora:
+                        <input type="text" name="fechahora" value={new Date(postDetails.fechahora).toLocaleString() || ''} onChange={handleInputChange} disabled={!isEditing} />
+                    </label>
+                    <label>
+                        Anónimo:
+                        <input type="checkbox" name="anónimo" checked={postDetails.anónimo || false} onChange={handleInputChange} disabled={!isEditing} />
+                    </label>
+                    <label>
+                        Likes:
+                        <input type="number" name="likes" value={postDetails.likes || 0} onChange={handleInputChange} disabled={!isEditing} />
+                    </label>
+                    <label>
+                        Imagen URL:
+                        <input type="text" name="imagen" value={postDetails.imagen || ''} onChange={handleInputChange} disabled={!isEditing} />
+                    </label>
                     {isEditing ? (
                         <div>
                             <button type="submit">Guardar cambios</button>

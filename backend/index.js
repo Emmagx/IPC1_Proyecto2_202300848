@@ -4,6 +4,7 @@ import multer from 'multer';
 import fs from 'fs';
 import { cargarUsuarios, crearUsuario, obtenerUsuarios, actualizarUsuario, eliminarUsuario } from './users/usuarios.js';
 import { actualizarPostLike, obtenerCategorias, cargarPosts, crearPost, obtenerPosts, actualizarPost, eliminarPost } from './posts/posts.js';
+import { cargarComentarios, guardarComentarios, crearComentario, obtenerComentariosPorPost} from './posts/comentarios.js';
 import moment from 'moment-timezone';
 const upload = multer({ dest: 'uploads/' });
 const app = express();
@@ -302,5 +303,34 @@ app.patch('/posts/like/:id', async (req, res) => {
   } catch (error) {
     console.error('Error al dar like al post:', error);
     res.status(500).send({ error: 'Error interno del servidor' });
+  }
+});
+app.post('/comments/', async (req, res) => {
+  const { postId, userId, text } = req.body;
+  try {
+    const newComment = await crearComentario({ postId, userId, text });
+    res.status(201).json(newComment);
+  } catch (error) {
+    console.error('Error al crear comentario:', error);
+    res.status(500).send({ error: 'Error al procesar la solicitud' });
+  }
+});
+app.get('/comments/:postId', async (req, res) => {
+  const { postId } = req.params;
+  try {
+    const comments = await obtenerComentariosPorPost(postId);
+    res.json(comments);
+  } catch (error) {
+    console.error('Error al obtener comentarios:', error);
+    res.status(500).send({ error: 'Error interno del servidor' });
+  }
+});
+app.get('/comments', async (req, res) => {
+  try {
+      const allComments = await cargarComentarios(); // Assuming cargarComentarios fetches all comments
+      res.json(allComments);
+  } catch (error) {
+      console.error('Failed to fetch comments:', error);
+      res.status(500).send({ error: 'Error al obtener los comentarios' });
   }
 });

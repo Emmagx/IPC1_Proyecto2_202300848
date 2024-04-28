@@ -149,7 +149,7 @@ function UserHome() {
                                 )}
                                 <form onSubmit={(event) => handleNewComment(event, post.id)}>
                                     <input type="text" placeholder="Add a comment" required />
-                                    <button type="submit">Send</button>
+                                    <button type="submit">enviar</button>
                                 </form>
                             </div>
                         )}

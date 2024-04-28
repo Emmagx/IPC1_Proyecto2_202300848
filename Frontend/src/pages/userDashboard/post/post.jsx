@@ -88,7 +88,7 @@
           <textarea
                 className="create-post-textarea"
                 placeholder="Describe what you want to write in your post..."
-                name="descripcion" // Asegúrate de que el nombre coincida con el estado
+                name="descripcion" 
                 value={postDetails['descripcion']}
                 onChange={handleChange}
               />

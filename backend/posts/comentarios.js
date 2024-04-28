@@ -1,10 +1,12 @@
 import { readFile, writeFile } from 'fs/promises';
-
-const archivoComentarios = 'data/comentarios.json';
+import moment from 'moment-timezone';
+const archivoComentarios = 'posts/comentarios.json';
 
 export async function cargarComentarios() {
     try {
         const data = await readFile(archivoComentarios, 'utf8');
+        console.log("Estamos cargar archivos");
+        // console.log(JSON.parse(data).comments);
         return JSON.parse(data).comments;
     } catch (error) {
         console.error('Error al cargar comentarios:', error);
@@ -25,8 +27,9 @@ export async function guardarComentarios(comments) {
 
 export async function crearComentario(comentarioData) {
     const comments = await cargarComentarios();
-    const newId = `c${comments.length + 1}`; 
+    const newId = comments.length + 1; 
     comentarioData.id = newId;
+    comentarioData.timestamp = moment().tz("America/Mexico_City").format()
     comments.push(comentarioData);
     await guardarComentarios(comments);
     return comentarioData;
@@ -34,5 +37,8 @@ export async function crearComentario(comentarioData) {
 
 export async function obtenerComentariosPorPost(postId) {
     const comments = await cargarComentarios();
-    return comments.filter(comment => comment.postId === postId);
+    // console.log('Obteniendo posts');
+    // console.log(postId);
+    // console.log(comments.filter(comments => comments.postId == postId));
+    return comments.filter(comments => comments.postId == postId);
 }

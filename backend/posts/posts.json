@@ -171,16 +171,6 @@
       "anónimo": false,
       "imagen": null,
       "likes": 0
-    },
-    {
-      "id": 19,
-      "descripción": "Holla reciente",
-      "códigousuario": "202200128",
-      "categoría": "",
-      "fechahora": "2024-04-27T19:47:50-06:00",
-      "anónimo": true,
-      "imagen": null,
-      "likes": 0
     }
   ]
 }

@@ -1,18 +1,25 @@
 {
-    "comments": [
-      {
-        "id": "1",
-        "postId": 3,
-        "userId": "202300848",
-        "text": "Really insightful post, thanks for sharing!",
-        "timestamp": "2024-04-27T12:00:00Z"
-      },
-      {
-        "id": 2,
-        "postId": 3,
-        "userId": "202300848",
-        "text": "I have a different take on this. Let me know what you think.",
-        "timestamp": "2024-04-27T13:00:00Z"
-      }
-    ]
-  }
+  "comments": [
+    {
+      "postId": 19,
+      "userId": "202200128",
+      "text": "Probando comentarios",
+      "id": 1,
+      "timestamp": "2024-04-27T21:54:48-06:00"
+    },
+    {
+      "postId": 18,
+      "userId": "202200128",
+      "text": "sdfa",
+      "id": 2,
+      "timestamp": "2024-04-27T21:56:50-06:00"
+    },
+    {
+      "postId": 13,
+      "userId": "202200128",
+      "text": "dasf",
+      "id": 3,
+      "timestamp": "2024-04-27T21:56:54-06:00"
+    }
+  ]
+}

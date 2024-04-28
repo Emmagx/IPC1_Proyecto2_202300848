@@ -117,7 +117,7 @@ app.post('/posts/', upload.single('image'), async (req, res) => {
       const maxId = posts.reduce((max, post) => Math.max(max, post.id), 0);
       const newId = maxId + 1;
       console.log(newId)
-      const fechahora = moment().tz("America/Mexico_City").format()
+      const fechahora = moment().tz("America/Mexico_City").format();
       const likes = 0;
 
       const newPost = {
@@ -317,6 +317,8 @@ app.post('/comments/', async (req, res) => {
 });
 app.get('/comments/:postId', async (req, res) => {
   const { postId } = req.params;
+  console.log('Estamos en la api de posts con el post');
+  console.log(postId);
   try {
     const comments = await obtenerComentariosPorPost(postId);
     res.json(comments);

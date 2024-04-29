@@ -150,8 +150,8 @@ app.get('/posts/', async (req, res) => {
 app.get('/posts/:id', async (req, res) => {
   const { id } = req.params;
   try {
-      const posts = await cargarPosts(); // Asume que esta función devuelve todos los posts
-      const post = posts.find(p => p.id == id); // Asegúrate de comparar correctamente según sea necesario (== o === dependiendo de si necesitas coerción de tipo)
+      const posts = await cargarPosts();
+      const post = posts.find(p => p.id == id);
       if (post) {
           res.json(post);
       } else {
@@ -196,7 +196,7 @@ app.post('/posts/mass_upload', upload.single('file'), async (req, res) => {
 
   try {
     const fileContent = fs.readFileSync(filePath, 'utf8');
-    console.log("File content read:", fileContent.substring(0, 100)); // muestra solo los primeros 100 caracteres para evitar desbordamiento
+    console.log("File content read:", fileContent.substring(0, 100));
     const data = JSON.parse(fileContent);
     console.log("Parsed data:", data);
 
@@ -211,10 +211,9 @@ app.post('/posts/mass_upload', upload.single('file'), async (req, res) => {
     
     for (const post of validPosts) {
       try {
-        // Agregar la fecha y hora actuales a cada post antes de crearlo
         const postWithTimestamp = {
           ...post,
-          fechahora: moment().tz("America/Mexico_City").format() // Ajusta a la zona horaria de la Ciudad de México, por ejemplo
+          fechahora: moment().tz("America/Mexico_City").format()
         };
         
         const createdPost = await crearPost(postWithTimestamp);
@@ -258,12 +257,11 @@ app.post('/users/mass_upload', upload.single('file'), async (req, res) => {
         const createdUser = await crearUsuario(user);
         results.push(createdUser);
       } catch (error) {
-        // Aquí se maneja el error de usuario existente, continuando con los siguientes
         if (error.message.startsWith("El usuario con username")) {
-          console.error(`Error: ${error.message}`); // Logear el error para auditoría interna pero continuar con el proceso
+          console.error(`Error: ${error.message}`); 
           results.push({ error: error.message, username: user.username });
         } else {
-          throw error; // Lanzar cualquier otro error desconocido para ser manejado más abajo
+          throw error; 
         }
       }
     }
@@ -273,7 +271,7 @@ app.post('/users/mass_upload', upload.single('file'), async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'Failed to process the file.' });
   } finally {
-    fs.unlinkSync(filePath); // Eliminar el archivo después de procesarlo o en caso de error
+    fs.unlinkSync(filePath); 
   }
 });
 
@@ -294,9 +292,7 @@ app.patch('/posts/like/:id', async (req, res) => {
     if (postIndex === -1) {
       return res.status(404).send({ error: 'Post no encontrado' });
     }
-    posts[postIndex].likes += 1; // Incrementa los likes
-
-    // Solo debes pasar el ID y los datosPost a actualizarPost
+    posts[postIndex].likes += 1; 
     await actualizarPostLike(id, { likes: posts[postIndex].likes });
 
     res.status(200).json(posts[postIndex]);
@@ -329,10 +325,23 @@ app.get('/comments/:postId', async (req, res) => {
 });
 app.get('/comments', async (req, res) => {
   try {
-      const allComments = await cargarComentarios(); // Assuming cargarComentarios fetches all comments
+      const allComments = await cargarComentarios();
       res.json(allComments);
   } catch (error) {
       console.error('Failed to fetch comments:', error);
       res.status(500).send({ error: 'Error al obtener los comentarios' });
+  }
+});
+app.post('/auxiliar', async (req, res) => {
+  const { username, nombres, apellidos, genero, facultad, carrera, mail, contraseña, isAdmin } = req.body;
+
+  if (!username || !nombres || !apellidos || !genero || !facultad || !carrera || !mail || !contraseña) {
+    return res.status(400).send({ error: 'Todos los campos son requeridos y deben ser válidos.' });
+  }
+  try {
+    const usuario = await crearUsuario(req.body);
+    res.status(201).send(usuario);
+  } catch (error) {
+    res.status(500).send({ error: 'Error al procesar la solicitud' });
   }
 });

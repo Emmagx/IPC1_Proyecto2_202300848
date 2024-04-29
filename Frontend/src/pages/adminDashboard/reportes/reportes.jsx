@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Pie, Bar } from 'react-chartjs-2';
-import HeaderAdmin from '../../../components/HeaderAdmin'; // Asegúrate que la ruta de importación sea correcta
+import HeaderAdmin from '../../../components/HeaderAdmin';
 import 'chart.js/auto';
 import './reportes.css'
 
@@ -37,7 +37,6 @@ function Reportes() {
   const fetchTopPosts = async () => {
     const response = await fetch('http://localhost:3000/posts');
     const posts = await response.json();
-    // Asegúrate de que el array 'posts' incluya los IDs y los likes de los posts
     const sortedPosts = posts.sort((a, b) => b.likes - a.likes).slice(0, 5);
     setTopPosts(sortedPosts);
     console.log(topUsersData);
@@ -72,7 +71,7 @@ function Reportes() {
         posts: userPostCounts[user.id] || 0
       })).sort((a, b) => b.posts - a.posts).slice(0, 10);
 
-      console.log("Top Users Data:", usersWithPostCounts);  // Añadir para depuración
+      console.log("Top Users Data:", usersWithPostCounts);
       setTopUsers(usersWithPostCounts);
     } catch (error) {
       console.error('Error fetching data for top users:', error);
@@ -81,7 +80,7 @@ function Reportes() {
 
   const pieOptions = {
     responsive: false,
-    maintainAspectRatio: false, // Añade esto para mantener la relación de aspecto
+    maintainAspectRatio: false, 
     plugins: {
       legend: {
         position: 'top',

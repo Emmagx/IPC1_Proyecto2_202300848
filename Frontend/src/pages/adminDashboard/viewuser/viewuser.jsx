@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import HeaderAdmin from '../../../components/HeaderAdmin'; // Asegúrate de que la ruta sea correcta
-import './viewuser.css'; // Asegúrate de que la ruta sea correcta
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import HeaderAdmin from '../../../components/HeaderAdmin'; 
+import './viewuser.css';
+import { useNavigate } from 'react-router-dom'; 
 
 function ViewUser() {
   const [users, setUsers] = useState([]);
@@ -29,13 +29,12 @@ function ViewUser() {
     }
   };
 
-  // Función para el botón Ver, que todavía no está implementada.
   const handleViewUser = (username) => {
-    navigate(`/admin/userview/user/${username}`); // Asegúrate de que la ruta coincida con tu configuración en AppRouter
+    navigate(`/admin/userview/user/${username}`); 
   };
   const downloadCsv = async () => {
     try {
-        const response = await fetch('http://localhost:3000/users');  // Make sure this URL is correct for fetching user data
+        const response = await fetch('http://localhost:3000/users');
         if (!response.ok) throw new Error('Failed to fetch users');
 
         const users = await response.json();
@@ -55,8 +54,8 @@ function ViewUser() {
         const link = document.createElement("a");
         link.setAttribute("href", encodedUri);
         link.setAttribute("download", "users.csv");
-        document.body.appendChild(link); // Required for FF
-        link.click(); // This will download the data file named "users.csv".
+        document.body.appendChild(link); 
+        link.click(); 
         link.remove();
     } catch (error) {
         console.error('Error downloading CSV:', error);

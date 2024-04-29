@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './HeaderAdmin.css'; // Asegúrate de crear este archivo para los estilos
+import './HeaderAdmin.css';
 
 function HeaderAdmin() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Aquí puedes agregar lógica para manejar la limpieza de la sesión
     navigate('/login');
   };
 

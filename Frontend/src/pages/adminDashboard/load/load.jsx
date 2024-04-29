@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import HeaderAdmin from '../../../components/HeaderAdmin'; // Asegúrate de que la ruta sea correcta
+import HeaderAdmin from '../../../components/HeaderAdmin';
 import './load.css';
 
 function Load() {
@@ -87,7 +87,7 @@ function Load() {
 
   return (
     <div className="load-dashboard">
-      <HeaderAdmin />  {/* Añadido aquí para incluir la barra de navegación */}
+      <HeaderAdmin />
       <h1>Carga de Datos - USocial</h1>
       <div className="tabs-container">
         <div className={`tab ${tab === 'users' ? 'active' : ''}`} onClick={() => setTab('users')}>

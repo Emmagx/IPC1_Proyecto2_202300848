@@ -164,6 +164,61 @@
       "mail": "231@bt.com",
       "contraseña": "123",
       "isAdmin": false
+    },
+    {
+      "username": "20240001",
+      "nombres": "Alberto Juan",
+      "apellidos": "Perez López",
+      "genero": "Masculino",
+      "facultad": "Arquitectura",
+      "carrera": "Diseño Gráfica",
+      "mail": "albertlop@gmail.com",
+      "contraseña": "Albert123-",
+      "isAdmin": false
+    },
+    {
+      "username": "20240002",
+      "nombres": "María José",
+      "apellidos": "Martínez Pérez",
+      "genero": "Femenino",
+      "facultad": "Ingeniería",
+      "carrera": "Ingeniería Civil",
+      "mail": "mjmartinez@gmail.com",
+      "contraseña": "Mj1234@",
+      "isAdmin": false
+    },
+    {
+      "username": "20240003",
+      "nombres": "Carlos Alberto",
+      "apellidos": "Fernández Rodríguez",
+      "genero": "Masculino",
+      "facultad": "Ciencias",
+      "carrera": "Biología",
+      "mail": "caferod@gmail.com",
+      "contraseña": "Cafero567#",
+      "isAdmin": false
+    },
+    {
+      "username": "202300849",
+      "nombres": "Usuario",
+      "apellidos": "Prueba",
+      "genero": "Masculino",
+      "facultad": "Ingeneria",
+      "carrera": "Ciencias y sistemas",
+      "mail": "a@example.com",
+      "contraseña": "Holamundo1*",
+      "isAdmin": false
+    },
+    {
+      "username": "202010033",
+      "nombres": "Rodolfo",
+      "apellidos": "Morales",
+      "genero": "Masculino",
+      "facultad": "Ingeniería",
+      "carrera": "Sistemas",
+      "mail": "rmz@example.com",
+      "contraseña": "12345",
+      "isAdmin": false
     }
   ]
 }

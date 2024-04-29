@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderAdmin from '../../components/HeaderAdmin'; // Asegúrate de que la ruta de importación es correcta
+import HeaderAdmin from '../../components/HeaderAdmin';
 import './adminDashboard.css';
 
 function AdminDashboard() {

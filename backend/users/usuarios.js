@@ -1,6 +1,4 @@
 import { readFile, writeFile } from 'fs/promises';
-//para eliminar usuarios usamos http://localhost:3000/users/202112345
-//Para agregar usuarios es subir todo el body
 const archivoUsuarios = 'users/users.json'; 
 
 export async function cargarUsuarios() {
@@ -17,10 +15,10 @@ async function guardarUsuarios(usuarios) {
   try {
     const data = JSON.stringify({ users: usuarios }, null, 2);
     await writeFile(archivoUsuarios, data, 'utf8');
-    console.log('Usuarios guardados exitosamente:', data);  // Ver los datos guardados
+    console.log('Usuarios guardados exitosamente:', data); 
   } catch (error) {
     console.error('Error al guardar usuarios:', error);
-    throw error;  // Volver a lanzar el error para que el controlador de Express pueda capturarlo.
+    throw error; 
   }
 }
 
@@ -28,7 +26,6 @@ async function guardarUsuarios(usuarios) {
 
 export async function crearUsuario(usuario) {
   const usuarios = await cargarUsuarios();
-  // Verifica si ya existe un usuario con el mismo 'username'
   if (usuarios.some(u => u.username === usuario.username)) {
     throw new Error(`El usuario con username ${usuario.username} ya existe.`);
   }
@@ -72,9 +69,9 @@ export async function eliminarUsuario(username) {
   }
   usuarios = usuarios.filter(u => u.username !== username);
   await guardarUsuarios(usuarios);
-  return true; // Indicar éxito
+  return true;
 }
 export async function encontrarUsuarioPorUsername(username) {
-  const usuarios = await cargarUsuarios(); // Asegúrate de que esta función devuelve todos los usuarios
+  const usuarios = await cargarUsuarios();
   return usuarios.find(u => u.username === username);
 }

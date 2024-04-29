@@ -12,10 +12,10 @@ function Register() {
         carrera: '',
         email: '',
         contraseña: '',
-        confirmarContraseña: '' // Nuevo estado para confirmar la contraseña
+        confirmarContraseña: ''
     });
     const navigate = useNavigate();
-    const [error, setError] = useState(''); // Agregado para manejar los mensajes de error
+    const [error, setError] = useState(''); 
     const [successMessage, setSuccessMessage] = useState('');
 
     const handleChange = (e) => {
@@ -45,7 +45,7 @@ function Register() {
         }
 
         try {
-            // Corrige aquí para enviar los nombres de claves correctos
+           
             
             const nuevoUsuario = {
                 username: user.username,
@@ -56,14 +56,14 @@ function Register() {
                 carrera: user.carrera,
                 mail: user.email,
                 contraseña: user.contraseña,
-                 isAdmin: false // Si necesitas enviar esto, asegúrate de que el backend lo maneje
+                 isAdmin: false 
             };
 
             const usuarioCreado = await crearUsuario(nuevoUsuario);
             console.log('Usuario registrado:', usuarioCreado);
             setSuccessMessage('Usuario registrado con éxito. Puede iniciar sesión ahora.');
             setError('');
-            // Aquí puedes redirigir al usuario o limpiar el formulario, etc.
+         
             setUser({
                 username: '',
                 nombres: '',
@@ -75,12 +75,12 @@ function Register() {
                 contraseña: '',
                 confirmarContraseña: ''
             });
-            // Redirige al usuario a la página de inicio de sesión después de 2 segundos
+            
             setTimeout(() => navigate('/login'), 200);
         } catch (error) {
             console.error('Error al crear usuario:', error);
             setError(error.message);
-            setSuccessMessage(''); // Limpiar mensajes de éxito previos si hubiera
+            setSuccessMessage(''); 
         }
     };
 

@@ -1,27 +1,25 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './NavBar.css';
-import plusIcon from '../Images/agregar.png'; // Asegúrate de que la ruta es correcta y la imagen está en tu proyecto
+import plusIcon from '../Images/agregar.png';
 
 function UserNavbar() {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // Aquí implementar la lógica de logout
         console.log('Cerrar sesión');
-        // Redirigir al inicio o a la página de login
         navigate('/login');
     };
     const handleTrendsClick = () => {
-        navigate('/trending'); // Ruta a la página de tendencias
+        navigate('/trending');
     };
     
     const handleProfileClick = () => {
-        navigate('/profile'); // Ruta a la página de perfil (asegúrate de que "/perfil" sea la ruta correcta en tu AppRouter)
+        navigate('/profile'); 
     };
     
     const handleInicioClick = () => {
-        navigate('/inicio'); // Ruta a la página de perfil (asegúrate de que "/perfil" sea la ruta correcta en tu AppRouter)
+        navigate('/inicio'); 
     };
     
     const handleCreatePost = () => {

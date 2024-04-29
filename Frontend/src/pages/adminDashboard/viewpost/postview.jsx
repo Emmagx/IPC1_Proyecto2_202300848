@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HeaderAdmin from '../../../components/HeaderAdmin';
-import './postview.css'; // Asegúrate que el path del CSS es correcto
+import './postview.css';
 
 function PostsView() {
     const [posts, setPosts] = useState([]);
@@ -25,7 +25,7 @@ function PostsView() {
     const handleDeletePost = async (id) => {
         try {
             await fetch(`http://localhost:3000/posts/${id}`, { method: 'DELETE' });
-            setPosts(posts.filter(post => post.id !== id)); // Actualizar el estado para reflejar el post eliminado
+            setPosts(posts.filter(post => post.id !== id)); 
         } catch (error) {
             console.error('Error deleting post:', error);
         }
@@ -47,13 +47,12 @@ const downloadPostsCsv = async () => {
             headers.join(","),
             ...posts.map(post => [
                 post.id, 
-                `"${post.descripción.replace(/"/g, '""')}"`, // Ensure any commas in descriptions are handled correctly
+                `"${post.descripción.replace(/"/g, '""')}"`, 
                 post.códigousuario,
                 post.categoría,
                 post.fechahora,
                 post.anónimo,
-                post.imagen ? post.imagen : "N/A", // Handle null images
-                post.likes
+                post.imagen ? post.imagen : "N/A", 
             ].join(","))
         ].join("\n");
 
@@ -61,8 +60,8 @@ const downloadPostsCsv = async () => {
         const link = document.createElement("a");
         link.setAttribute("href", encodedUri);
         link.setAttribute("download", "posts.csv");
-        document.body.appendChild(link); // Required for FF
-        link.click(); // This will download the data file named "posts.csv".
+        document.body.appendChild(link);
+        link.click();
         link.remove();
     } catch (error) {
         console.error('Error downloading CSV:', error);

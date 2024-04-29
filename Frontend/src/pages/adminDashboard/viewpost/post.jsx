@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import HeaderAdmin from '../../../components/HeaderAdmin';
-import './post.css'; // Asegúrate de que el path del CSS es correcto
+import './post.css'; 
 
 function Post() {
     const { id } = useParams();
@@ -48,7 +48,7 @@ function Post() {
             if (!response.ok) {
                 throw new Error('Error al actualizar el post');
             }
-            navigate('/admin/posts'); // Redirige a la lista de posts
+            navigate('/admin/posts'); 
         } catch (error) {
             console.error('Error al actualizar los detalles del post:', error);
         }

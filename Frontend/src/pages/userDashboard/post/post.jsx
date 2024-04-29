@@ -4,9 +4,8 @@
   import './post.css'
   
   function NewUserPost() {
-    // Actualiza los nombres de los estados para que coincidan con los campos del formulario
     const [postDetails, setPostDetails] = useState({
-      'codigousuario': localStorage.getItem('userId'), // Asumiendo que ya está almacenado
+      'codigousuario': localStorage.getItem('userId'),
       'descripcion': '',
       'categoria': '',
       'anonimo': false,
@@ -16,7 +15,6 @@
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
-      // Esta función debería llamarse al montar el componente
       const cargarCategorias = async () => {
         try {
           const respuesta = await fetch('http://localhost:3000/categorias');
@@ -46,7 +44,7 @@
       e.preventDefault();
 
       const formData = new FormData();
-      // Usa los nombres de los estados directamente
+      
       formData.append('descripcion', postDetails['descripcion']);
       formData.append('codigousuario', postDetails['codigousuario']);
       formData.append('categoria', postDetails['categoria']);
@@ -67,7 +65,6 @@
 
           if (response.ok) {
               const result = await response.json();
-              // console.log('Post creado exitosamente', result);
               alert('Post creado exitosamente!');
               navigate('/inicio'); 
           } else {

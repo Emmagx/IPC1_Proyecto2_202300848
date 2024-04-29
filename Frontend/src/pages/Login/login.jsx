@@ -24,12 +24,11 @@ function Login() {
   
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('userId', data.username); // Asegúrate de que el backend devuelve el userId
-        // console.log(data.userId, ' ', userId)
+        localStorage.setItem('userId', data.username);
         if (data.isAdmin) {
-          navigate('/admin');  // Ruta para administradores
+          navigate('/admin'); 
         } else {
-          navigate('/inicio');  // Ruta para usuarios no administradores
+          navigate('/inicio');
         }
       } else {
         const errorData = await response.json();

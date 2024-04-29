@@ -25,7 +25,7 @@ export async function guardarPosts(posts) {
 
 export async function crearPost(postData) {
     const posts = await cargarPosts();
-    const newId = posts.length + 1;  // Simplicidad: asignar ID basado en la longitud + 1
+    const newId = posts.length + 1; 
     postData.id = newId;
     posts.push(postData);
     await guardarPosts(posts);

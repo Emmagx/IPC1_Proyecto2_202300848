@@ -172,6 +172,58 @@
       "anónimo": false,
       "imagen": null,
       "likes": 0
+    },
+    {
+      "códigousuario": "20240001",
+      "descripción": "Hoy inician las clase en la Facultad",
+      "categoría": "Anuncio Importante",
+      "anónimo": false,
+      "fechahora": "2024-04-28T09:50:13-06:00",
+      "id": 19
+    },
+    {
+      "códigousuario": "20240002",
+      "descripción": "Cuando sera el partido??",
+      "categoría": "Divertido",
+      "anónimo": true,
+      "fechahora": "2024-04-28T09:50:13-06:00",
+      "id": 20
+    },
+    {
+      "códigousuario": "20240003",
+      "descripción": "¿Alguien sabe si habrá actividades deportivas este fin de semana?",
+      "categoría": "Académico",
+      "anónimo": false,
+      "fechahora": "2024-04-28T09:50:13-06:00",
+      "id": 21
+    },
+    {
+      "códigousuario": "20240004",
+      "descripción": "¿Qué opinan sobre la nueva cafetería de la facultad?",
+      "categoría": "Variedad",
+      "anónimo": true,
+      "fechahora": "2024-04-28T09:50:13-06:00",
+      "id": 22
+    },
+    {
+      "id": 23,
+      "descripción": "post de prueba 1",
+      "códigousuario": "202300849",
+      "categoría": "Académico",
+      "fechahora": "2024-04-28T09:58:28-06:00",
+      "anónimo": false,
+      "imagen": null,
+      "likes": 0
+    },
+    {
+      "id": 24,
+      "descripción": "Post de prueba no 2",
+      "códigousuario": "202300849",
+      "categoría": "Académico",
+      "fechahora": "2024-04-28T09:59:00-06:00",
+      "anónimo": true,
+      "imagen": null,
+      "likes": 1
     }
   ]
 }

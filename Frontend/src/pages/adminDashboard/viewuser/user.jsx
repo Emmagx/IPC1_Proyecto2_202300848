@@ -5,14 +5,14 @@ import HeaderAdmin from '../../../components/HeaderAdmin';
 import './user.css';
 
 function User() {
-  const { username } = useParams(); // Esto toma el parámetro de la URL
+  const { username } = useParams(); 
   const [userDetails, setUserDetails] = useState({
     username: '',
     nombres: '',
     apellidos: '',
     email: '',
     isAdmin: false,
-    // Agrega más campos según sea necesario
+    
   });
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
@@ -54,9 +54,7 @@ function User() {
         throw new Error('Error al actualizar el usuario');
       }
 
-      // Posible manejo de la respuesta aquí, si el backend envía algo de vuelta
-
-      navigate('/admin/userview'); // Redirige al usuario de vuelta a la lista de usuarios
+      navigate('/admin/userview');
     } catch (error) {
       console.error('Error al actualizar los detalles del usuario:', error);
     }
@@ -88,8 +86,6 @@ function User() {
             Es administrador:
             <input type="checkbox" name="isAdmin" checked={userDetails.isAdmin} onChange={(e) => setUserDetails({ ...userDetails, isAdmin: e.target.checked })} disabled={!isEditing} />
           </label>
-          {/* Añade aquí más detalles del usuario */}
-          {/* ... */}
           {isEditing ? (
             <div>
               <button type="submit">Guardar cambios</button>

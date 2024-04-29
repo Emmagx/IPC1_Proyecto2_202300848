@@ -34,7 +34,7 @@ function UserHome() {
                     const response = await fetch(`http://localhost:3000/comments/${post.id}`);
                     const commentsForPost = response.ok ? await response.json() : [];
                     initialComments[post.id] = commentsForPost;
-                    post.commentCount = commentsForPost.length; // Add comment count to each post
+                    post.commentCount = commentsForPost.length; 
                 }));
 
                 setUsers(usersObj);
@@ -117,7 +117,7 @@ function UserHome() {
                             <div className="post-metadata">
                                 <span className="post-fechaHora">{new Date(post.fechahora).toLocaleString()}</span>
                                 <span className="post-category">{post.categoría}</span>
-                                <span className="comment-count">Comentarios: {post.commentCount}</span>  {/* Added comment count display */}
+                                <span className="comment-count">Comentarios: {post.commentCount}</span>
                             </div>
                         </div>
                         <p className="post-description">{post.descripción}</p>

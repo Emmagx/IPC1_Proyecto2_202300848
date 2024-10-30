@@ -171,7 +171,7 @@
       "fechahora": "2024-04-27T19:27:52-06:00",
       "anónimo": false,
       "imagen": null,
-      "likes": 0
+      "likes": 1
     },
     {
       "códigousuario": "20240001",
@@ -213,7 +213,7 @@
       "fechahora": "2024-04-28T09:58:28-06:00",
       "anónimo": false,
       "imagen": null,
-      "likes": 0
+      "likes": 1
     },
     {
       "id": 24,
@@ -223,7 +223,7 @@
       "fechahora": "2024-04-28T09:59:00-06:00",
       "anónimo": true,
       "imagen": null,
-      "likes": 1
+      "likes": 3
     }
   ]
 }
